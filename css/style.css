@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+h1{font-size: 1.5rem; color: white;}
+h2{font-size: 1.25rem; color: rgb(255, 255, 255);}
+h3{font-size: 1.25rem; color: white;}
+h4{font-size: 1rem; color: rgb(160, 160, 160);}
+a{font-size: 1rem; color: white; text-decoration: none;}
+p{font-size: 1rem; color: white;}
+
+#flex-wrapper{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 10px;
+    height: 60px;
+    background-color: rgb(38, 53, 79);
+}
+
+nav{
+    display: none;
+}
+
+header *{
+    height: 40px;
+}
+
+#hamburger{
+    height: 50px;
+    width: 50px;
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    height: 200px;
+
+    padding: 10px;
+    background-color: rgb(44, 56, 68);
+}
+
+footer hr{
+    width: 100%;
+    stroke: 0;
+    fill: 0;
+    border: 0.25px solid white;
+}
+
+#binder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 10px 10px 0 10px;
+
+    width: 100%;
+    background-color: rgb(39, 49, 56);
+}
+
+.game{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+
+    margin-bottom: 10px;
+    padding: 10px;
+
+    border-radius: 10px;
+    border: 2px rgb(102, 102, 102) solid;
+    background-color: rgb(32, 35, 45);
+}
+
+.game img{
+    width: 100%;
+
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+#account_overview{
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    grid-template-rows: 25px 20px 15px;
+    grid-template-areas:
+    "pf .."
+    "pf na"
+    "pf in";
+    background-color: rgb(41, 41, 51);
+    width: 100%;
+    height: 200px;
+
+    padding: 10px;
+}
+
+#account_overview img{grid-area: pf;}
+#account_overview h3{grid-area: na;}
+#account_overview h4{grid-area: in;}
+
+#account_overview img{
+    height: 100%;
+
+    border-radius: 5px;
+    border: 2px rgb(18, 18, 64) solid;
+}

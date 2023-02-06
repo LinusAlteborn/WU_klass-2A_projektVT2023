@@ -1,0 +1,1 @@
+I denna mapp ligger html filerna för spel
