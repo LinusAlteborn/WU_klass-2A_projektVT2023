@@ -1,8 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900;1000&display=swap');
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Nunito', sans-serif;
+}
+:root{
+    --header_height: 70px;
+    --burger_size: 25px;
+    --burger_line_width: 3px;
+    --burger_line_spacing: calc(var(--burger_size)/2 - var(--burger_line_width) * 1.5);
+    --nav_length: 100px;
+    --nav_width: 100px;
+
+    --profile_picture_size: 80px;
+    --profile_banner_width: 100%;
+    --profile_overview_banner: 250px;
+    --profile_banner_height: calc(var(--profile_overview_banner) - var(--profile_picture_size) / 2);
 }
 h1{font-size: 1.5rem; color: white;}
 h2{font-size: 1.25rem; color: rgb(255, 255, 255);}
@@ -10,6 +25,10 @@ h3{font-size: 1.25rem; color: white;}
 h4{font-size: 1rem; color: rgb(160, 160, 160);}
 a{font-size: 1rem; color: white; text-decoration: none;}
 p{font-size: 1rem; color: white;}
+
+body{
+    background-color: rgb(14, 18, 30);
+}
 
 #flex-wrapper{
     display: flex;
@@ -19,27 +38,21 @@ p{font-size: 1rem; color: white;}
 }
 
 header{
+    z-index: 2;
+    position: fixed;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 10px;
-    height: 60px;
+    padding: 0 15px;
+    height: var(--header_height);
+    width: 100%;
     background-color: rgb(38, 53, 79);
 }
 
-nav{
-    display: none;
-}
-
 header *{
-    height: 40px;
-}
-
-#hamburger{
-    height: 50px;
-    width: 50px;
+    height: 35px;
 }
 
 footer{
@@ -65,7 +78,7 @@ footer hr{
     flex-direction: column;
     align-items: center;
 
-    padding: 10px 10px 0 10px;
+    padding: calc(var(--header_height) + 10px) 10px 0 10px;
 
     width: 100%;
     background-color: rgb(39, 49, 56);
@@ -82,40 +95,130 @@ footer hr{
     margin-bottom: 10px;
     padding: 10px;
 
-    border-radius: 10px;
+    border-radius: 12px;
     border: 2px rgb(102, 102, 102) solid;
     background-color: rgb(32, 35, 45);
 }
 
-.game img{
+.game picture{
+    position: relative; 
     width: 100%;
+}
+
+.game picture img{
+    object-fit: cover;
 
     border-radius: 10px;
     margin-bottom: 10px;
 }
 
 #account_overview{
+    position: relative;
+    margin-top: var(--header_height);
+    height: var(--profile_overview_banner);
+}
+
+#account_info{
+    position: absolute;
+    bottom: calc(0 * var(--profile_picture_size)/2);
     display: grid;
-    grid-template-columns: 60px 1fr;
-    grid-template-rows: 25px 20px 15px;
-    grid-template-areas:
+    grid-template-columns: var(--profile_picture_size) 1fr;
+    grid-template-rows: calc(var(--profile_picture_size)/2) calc(var(--profile_picture_size)/3) calc(var(--profile_picture_size)/6);
+    grid-template-areas: 
     "pf .."
     "pf na"
-    "pf in";
-    background-color: rgb(41, 41, 51);
-    width: 100%;
-    height: 200px;
+    "pf co"
+    "pf ..";
 
-    padding: 10px;
+    margin-left: 10px;
 }
 
-#account_overview img{grid-area: pf;}
-#account_overview h3{grid-area: na;}
-#account_overview h4{grid-area: in;}
+#account_info #account_pfp{grid-area: pf;}
+#account_info h3{grid-area: na; font-size: 1.3rem;}
+#account_info h4{grid-area: co; font-size: 1rem;}
+#account_info > *:not(#account_pfp){margin-left: 10px;}
 
-#account_overview img{
-    height: 100%;
+#account_pfp{
+    height: var(--profile_picture_size);
 
     border-radius: 5px;
-    border: 2px rgb(18, 18, 64) solid;
+    border: 2px rgb(13, 19, 52) solid;
 }
+
+#account_info > *:not(#account_pfp){
+    margin-left: 10px;
+}
+
+#account_banner{
+    position: relative;
+    z-index: -1;
+
+    max-width: 100%;
+    height: var(--profile_banner_height);
+    width: var(--profile_banner_width);
+
+    margin-bottom: 10px;
+    
+    object-fit: cover;
+}
+
+#account_stats{
+    position: relative;
+    height: 200px;
+    margin: 20px 10px 20px 10px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgb(28, 33, 47);
+}
+
+
+
+#burger {
+    width: var(--burger_size);
+    height: var(--burger_size);
+    cursor: pointer;
+}
+
+#burger div {
+    height: var(--burger_line_width);
+    margin-bottom: var(--burger_line_spacing);
+
+    border-radius: calc(var(--burger_line_width) / 2);
+    background-color: white;
+    transition: all 0.5s;
+}
+
+#nav-links {
+    z-index: 1;
+    position: absolute;
+    top: calc(var(--header_height) - var(--nav_length));
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    height: var(--nav_length);
+    width: var(--nav_width);
+
+    padding-left: 5px;
+
+    background-color: rgb(29, 43, 55);
+    transition: all 0.5s;
+}
+
+#nav-links li {
+    list-style: none;
+    text-decoration: none;
+}
+
+#nav-links a {
+    font-size: 1rem;
+    color: white;
+}
+
+/* när burger är aktiv */
+.burger_toggle #line_1 {transform: translate(0, calc(var(--burger_line_spacing) + var(--burger_line_width))) rotate(-45deg);}
+.burger_toggle #line_2 {transform: rotate(45deg);}
+.burger_toggle #line_3 {transform: translate(0, calc(-1*var(--burger_line_spacing) - var(--burger_line_width))) rotate(45deg);}
+.nav_active {transform: translateY(calc(var(--nav_length)));}
