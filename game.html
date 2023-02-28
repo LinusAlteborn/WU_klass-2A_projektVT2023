@@ -9,30 +9,22 @@
 </head>
 <body>
     <div id="flex-wrapper">
-        <header>
-            <div id="burger">
-                <div class="hamburger_line" id="line_1"></div>
-                <div class="hamburger_line" id="line_2"></div>
-                <div class="hamburger_line" id="line_3"></div>
-            </div>
-            <a href="index.html"><h1>Binus Spelus</h1></a>
-            <a href="account.html"><img src="img/icons/account.svg" alt="account"></a>
-        </header>
-        <nav>
-            <ul id="nav-links">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-
-        <iframe src="games/1.html">
+        <header></header> <!-- koden för header finns i javascript filen -->
+        
+        <iframe id="game">
             your browser does not support iframes, which means you can't play on this site. sorry ):
         </iframe>
 
-        <footer>
-            <hr>
-            <p>Binus© 2023</p>
-        </footer>
+        <section id="game_info">
+            <h2 id="game_info_name">
+                [insert game name]
+            </h2>
+            <h4 id="game_info_engine">
+                Made in [insert game engine]
+            </h4>
+        </section>
+
+        <footer></footer> <!-- koden för footer finns i javascript filen -->
     </div>
     <script src="js/main.js"></script>
 </body>

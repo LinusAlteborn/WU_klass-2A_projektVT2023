@@ -14,14 +14,18 @@
     --nav_length: 100px;
     --nav_width: 100px;
 
+    --game_width: 300px;
+    --iframe_width: 100vw;
+
     --profile_picture_size: 80px;
     --profile_banner_width: 100%;
-    --profile_overview_banner: 250px;
+    --profile_overview_banner: 300px;
     --profile_banner_height: calc(var(--profile_overview_banner) - var(--profile_picture_size) / 2);
+    --profile_overview_width: minmax(1000px, 100%);
 }
 h1{font-size: 1.5rem; color: white;}
 h2{font-size: 1.25rem; color: rgb(255, 255, 255);}
-h3{font-size: 1.25rem; color: white;}
+h3{font-size: 1rem; color: rgb(255, 255, 255);}
 h4{font-size: 1rem; color: rgb(160, 160, 160);}
 a{font-size: 1rem; color: white; text-decoration: none;}
 p{font-size: 1rem; color: white;}
@@ -34,6 +38,7 @@ body{
     padding-top: var(--header_height);
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     width: 100%;
 }
@@ -54,7 +59,7 @@ header{
 }
 
 header *{
-    height: 35px;
+    height: 30px;
 }
 
 footer{
@@ -63,6 +68,7 @@ footer{
     align-items: flex-start;
 
     height: 200px;
+    width: 100%;
 }
 
 footer hr{
@@ -83,6 +89,14 @@ footer p{
     color: rgba(255, 255, 255, 0.386);
 }
 
+iframe{
+    max-width: 100%;
+    max-height: 90vh;
+    width: var(--iframe_width);
+    height: calc(var(--iframe_width) * 0.75 + 50px);
+    border: 0;
+}
+
 #binder{
     display: flex;
     flex-direction: column;
@@ -93,8 +107,24 @@ footer p{
     width: 100%;
 }
 
-iframe{
-    height: calc(90vmin);
+#binder a{
+    width: 100%;
+}
+
+#load-more{
+    max-width: 100%;
+    height: 55px;
+    width: calc(var(--game_width) * 4 + 7.5px * 4);
+    margin: 0px 10px;
+    border-radius: 12px;
+    background-color: rgb(21, 31, 49);
+    border: 2px solid rgba(255, 255, 255, 0.173);
+    outline: 0;
+    color:white;
+    font-size: 1.25rem;
+}
+#load-more:hover{
+    cursor: pointer;
 }
 
 .game{
@@ -121,9 +151,17 @@ iframe{
     margin-bottom: 10px;
 }
 
+#game_info{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 0 10px;
+    width: 100%;
+}
+
 #account_overview{
     position: relative;
     height: var(--profile_overview_banner);
+    width: 100%;
 }
 
 #account_info{
@@ -171,6 +209,7 @@ iframe{
 #account_stats{
     position: relative;
     height: 200px;
+    width: calc(100% - 20px);
     margin: 20px 10px 20px 10px;
     padding: 15px;
     border-radius: 10px;
@@ -180,11 +219,15 @@ iframe{
 
 
 nav{
-    position: fixed;
-    top: var(--header_height);
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: var(--header_height);
+    width: 100px;
 }
 
 #burger {
+    z-index: 2;
     width: var(--burger_size);
     height: var(--burger_size);
     cursor: pointer;
@@ -196,26 +239,29 @@ nav{
 
     border-radius: calc(var(--burger_line_width) / 2);
     background-color: white;
-    transition: all 0.5s;
+    transition: all 0.25s;
 }
 
 #nav-links {
     z-index: 1;
     position: absolute;
-    bottom: 0;
-    left: 0;
+    top: var(--header_height);
 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 
-    height: var(--nav_length);
+    overflow: hidden;
     width: var(--nav_width);
 
     padding-left: 5px;
 
     background-color: rgb(20, 32, 43);
-    transition: all 0.5s;
+    transition: all 0.25s;
+}
+
+nav > *{
+    height: 0;
 }
 
 #nav-links li {
@@ -232,4 +278,115 @@ nav{
 .burger_toggle #line_1 {transform: translate(0, calc(var(--burger_line_spacing) + var(--burger_line_width))) rotate(-45deg);}
 .burger_toggle #line_2 {transform: rotate(45deg);}
 .burger_toggle #line_3 {transform: translate(0, calc(-1*var(--burger_line_spacing) - var(--burger_line_width))) rotate(45deg);}
-.nav_active {transform: translateY(calc(var(--nav_length)));}
+.nav_active {height:var(--nav_length);}
+
+@media only screen and (min-width: 700px) {
+    #binder{
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+    }
+    #binder a{
+        margin: 0 5px;
+        width: var(--game_width);
+    }
+    header{
+        display: flex;
+        justify-content:space-between;
+    }
+    h1{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    nav{
+        position: static;
+        height: fit-content;
+    }
+    #nav-links{
+        position: relative;
+        top: 0;
+        left: 0;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        height: fit-content;
+        width: fit-content;
+        background-color: transparent;
+
+        padding-left: 5px;
+    }
+    #nav-links li{
+        height: fit-content;
+        margin-right: 20px;
+    }
+    .nav_active{
+        transform: translateY(0);
+    }
+    #burger{
+        display: none;
+    }
+
+    #account_overview{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        height: var(--profile_overview_banner);
+    }
+    
+    #account_info{
+        position: absolute;
+        bottom: -5px;
+        display: grid;
+        grid-template-columns: var(--profile_picture_size) 1fr;
+        grid-template-rows: calc(var(--profile_picture_size)/2) calc(var(--profile_picture_size)/3) calc(var(--profile_picture_size)/6);
+        grid-template-areas: 
+        "pf .."
+        "pf na"
+        "pf co"
+        "pf ..";
+    
+        width: var(--profile_overview_width);
+        margin-left: 10px;
+    }
+    
+    #account_info #account_pfp{grid-area: pf;}
+    #account_info h3{grid-area: na; font-size: 1.2rem;}
+    #account_info h4{grid-area: co; font-size: 0.9rem;}
+    #account_info > *:not(#account_pfp){margin-left: 10px;}
+    
+    #account_pfp{
+        height: var(--profile_picture_size);
+    
+        border-radius: 5px;
+        border: 2px rgb(13, 19, 52) solid;
+    }
+    
+    #account_info > *:not(#account_pfp){
+        margin-left: 10px;
+    }
+    
+    #account_banner{
+        position: relative;
+        z-index: -1;
+    
+        max-width: 100%;
+        height: var(--profile_banner_height);
+        width: var(--profile_banner_width);
+        
+        object-fit: cover;
+    }
+    
+    #account_stats{
+        position: relative;
+        height: 200px;
+        width: var(--profile_overview_width);
+        margin: 20px 10px 20px 10px;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: rgb(28, 33, 47);
+    }
+}
