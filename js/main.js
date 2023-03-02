@@ -11,8 +11,6 @@ var header = ('<nav>' +
 '<ul id="nav-links">' +
 '    <li><a href="#">About</a></li>' +
 '    <li><a href="#">Contact</a></li>' +
-'    <li><a href="#">Statistics</a></li>' +
-'    <li><a href="#">Developers</a></li>' +
 '    <li><a href="#">Forum</a></li>' +
 '</ul>' +
 '</nav>' +

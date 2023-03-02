@@ -89,14 +89,15 @@ footer hr{
 }
 
 footer p{
-    margin-left: 5px;
+    margin-left: 10px;
     color: rgba(255, 255, 255, 0.386);
 }
 
 iframe{
     max-width: 100%;
     max-height: 90vh;
-    width: var(--iframe_width);
+    width: 100%;
+    padding: 0 calc(50% - var(--iframe_width) / 2);
     height: calc(var(--iframe_width) * 0.75 + 50px);
     border: 0;
 }
@@ -331,7 +332,7 @@ input[type=text], input[type=password] {
 }
 
 input::placeholder{
-    color: rgba(174, 193, 249, 0.396);
+    color: rgb(73, 85, 103);
 }
   
 /* Set a style for all buttons */
@@ -378,6 +379,9 @@ button:hover {
         margin: 0 5px;
         width: var(--game_width);
     }
+    iframe{
+        background-color: black;
+    }
     header{
         display: flex;
         justify-content:space-between;
@@ -406,11 +410,11 @@ button:hover {
         width: fit-content;
         background-color: transparent;
 
-        padding-left: 5px;
+        padding-left: 10px;
     }
     #nav-links li{
         height: fit-content;
-        margin-right: 20px;
+        margin-right: 25px;
     }
     .nav_active{
         transform: translateY(0);
