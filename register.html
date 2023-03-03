@@ -12,15 +12,14 @@
     <div id="flex-wrapper">
         <header></header> <!-- koden för header finns i javascript filen -->
 
-        <form id="form_register">
-            <h2>Register your account</h2>
-            <input type="text" placeholder="Enter Username" name="username" id="username_field" required>
-            <input type="text" placeholder="Enter Email" name="username" id="username_field">
+        <form id="form-register" class="form-login-register">
+            <h3>Sign Up</h3>
+            <input type="text" placeholder="Enter Username" name="username" id="username-field" required>
             <div class="password-container">
-                <input type="password" placeholder="Enter Password" name="password" id="password_field" required>
-                <i class="fa-solid fa-eye" id="eye"></i>
+                <input type="password" placeholder="Enter Password" name="password" id="password-field" required>
+                <img src="img/icons/view.svg" alt="password-eye" class="eye">
             </div>
-            <button type="submit" id="registerButton">login</button>
+            <button type="submit" value="register" id="register-button">SIGN UP</button>
         </form>
 
         <footer></footer> <!-- koden för footer finns i javascript filen -->

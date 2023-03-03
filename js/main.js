@@ -6,117 +6,140 @@ var games = [
     {"name": "Candy Clicker 2", "engine": "Scratch"}
 ]
 
-
-var header = ('<nav>' +
-'<ul id="nav-links">' +
-'    <li><a href="#">About</a></li>' +
-'    <li><a href="#">Contact</a></li>' +
-'    <li><a href="#">Forum</a></li>' +
-'</ul>' +
+//mina html templates som jag placerar genom javascript för extra flexibilitet och effektivitet
+var templates =
+{
+"header":
+(
+'<nav id="nav-links">' +
+'    <h2><a href="#">About</a></h2>' +
+'    <h2><a href="#">Contact</a></h2>' +
+'    <h2><a href="#">Forum</a></h2>' +
 '</nav>' +
-'<div id="burger">' +
-'<div class="hamburger_line" id="line_1"></div>' +
-'<div class="hamburger_line" id="line_2"></div>' +
-'<div class="hamburger_line" id="line_3"></div>' +
-'</div>' +
-'<a href="index.html"><h1>Binus Spelus</h1></a>' +
-'<a href="login.html" id="nav_account"><img src="img/icons/account.svg" alt="account"></a>'
-);
+'    <div id="burger">' +
+'       <div class="hamburger_line" id="line_1"></div>' +
+'       <div class="hamburger_line" id="line_2"></div>' +
+'       <div class="hamburger_line" id="line_3"></div>' +
+'    </div>' +
+'    <h1><a href="index.html">Binus Spelus</a></h1>' +
+'<a href="login.html" id="nav-links-login"><img src="img/icons/account.svg" alt="login"></a>'
+),
 
-var footer = ('<hr>' +
+"footer":
+(
+'<hr>' +
 '<p>Binus© 2023</p>'
-);
+),
 
-function header_footer(){
-    document.getElementsByTagName("header")[0].innerHTML = header;
-    document.getElementsByTagName("footer")[0].innerHTML = footer;
+"game":
+(
+'<img src="img/thumbnails/1.png" alt="name">' +
+'<h2>name</h2>'
+)
 }
 
-function toggleMenu() {
-    burger.classList.toggle('burger_toggle')
-    nav.classList.toggle('nav_active')
+function header_footer(){
+    document.getElementsByTagName("header")[0].innerHTML = templates.header;
+    document.getElementsByTagName("footer")[0].innerHTML = templates.footer;
+}
+
+function toggleMenu(){
+    burger.classList.toggle('burger-toggle');
+    nav.classList.toggle('nav-active');
 }
 
 function addGame(id){
-    var new_game = '<a href="game.html?' + (id + 1).toString() + '"><article class="game"><img src="img/thumbnails/' + (id + 1).toString() + '.png" alt="' + games[id].name + '"><h2>' + games[id].name + '</h2></article></a>';
-    var binder = document.getElementById("binder");
-    binder.innerHTML += new_game;
+    var new_game = document.createElement("a");
+    new_game.innerHTML = templates.game;
+    new_game.getElementsByTagName("img")[0].src = "img/thumbnails/" + id + ".png";
+    new_game.getElementsByTagName("h2")[0].innerHTML = games[id].name;
+    new_game.href = "game.html?" + id;
+    new_game.classList = "game";
+    document.getElementById("binder").appendChild(new_game);
 }
 
-function loadMore(){
-    var start = document.getElementById("binder").childElementCount;
-    for(var i = start; i < start + 4; i++){
+function load_more_games(amount){
+    var start = document.getElementById("binder").childElementCount - 1;
+    for(var i = start; i < start + amount; i++){
+        addGame(i);
         if (i >= games.length - 1){
-            loadMoreButton.remove()
+            document.getElementById("load-more").remove();
+            return
         }
-        addGame(i)
     }
+    document.getElementById("binder").appendChild(document.getElementById("load-more"));
+}
+
+function login() {
+    if (usernameField.value == sessionStorage.getItem('username')){
+        if (passwordField.value == sessionStorage.getItem('password')){
+            sessionStorage.setItem('loggedin', true);
+            window.location.assign('account.html');
+            return
+        }
+    }
+    sessionStorage.setItem('loggedin', false);
+    window.location.assign('login.html');
 }
 
 function handleForm(event) {
+    event.preventDefault();
+    submitter = event.submitter.value;
+    if (submitter === "login"){ login(); }
+    if (submitter === "register"){ register(); }
+}
+
+function logout(){
+    sessionStorage.setItem('loggedin', false);
+    window.location.assign('login.html');
+}
+
+function register(){
     sessionStorage.setItem('username', usernameField.value);
     sessionStorage.setItem('password', passwordField.value);
-    sessionStorage.setItem('loggedin', true);
-    window.location.assign('../account.html');
-    event.preventDefault();
+    window.location.assign('login.html');
 }
 
 function handleSearch(){
 
 }
 
-
 header_footer();
 const burger = document.getElementById('burger');
-const nav = document.getElementById('nav-links');
-var loadMoreButton = document.getElementById("load-more");
-const usernameField = document.getElementById("username_field");
-const passwordField = document.getElementById("password_field");
-const eye = document.querySelector("#eye")
-const form = document.getElementById("form_login");
-const formSearch = document.getElementById("formSearch");
 burger.addEventListener('click', toggleMenu);
+const nav = document.getElementById('nav-links');
+const usernameField = document.getElementById("username-field");
+const passwordField = document.getElementById("password-field");
+const eye = document.getElementsByClassName("eye")[0];
+const form = document.getElementsByClassName("form-login-register")[0];
+const formSearch = document.getElementById("formSearch");
 if (document.getElementById("game") != null){
     document.getElementById("game").src = "games/" + location.search.substring(1) + "/index.html";
-    document.getElementById("game_info_name").innerHTML = games[location.search.substring(1) - 1].name;
-    document.getElementById("game_info_engine").innerHTML = "Made in " + games[location.search.substring(1) - 1].engine;
+    document.getElementById("game_info_name").innerHTML = games[location.search.substring(1)].name;
+    document.getElementById("game_info_engine").innerHTML = "Made in " + games[location.search.substring(1)].engine;
 }
 if (document.getElementById("binder") != null){
-    loadMoreButton.addEventListener('click', loadMore);
-    for(var i = 0; i < 4; i++) {
-        if (i >= games.length - 1){
-            loadMoreButton.remove()
-        }
-        addGame(i)
-    }
+    load_more_games(8);
 }
-if (document.getElementById("form_login") != null){
+if (form != null){
     form.addEventListener('submit', handleForm);
-    eye.addEventListener("click", function(){
-        this.classList.toggle("fa-eye-slash")
-        const type = passwordField.getAttribute("type") === "password" ? "text" : "password"
-        passwordField.setAttribute("type", type)
-    })
 }
-if (document.getElementById("account_info") != null){
-    document.getElementById("account_name").innerHTML = sessionStorage.getItem('username');
+if (document.getElementById("account-overview") != null){
+    document.getElementById("account-name").innerHTML = sessionStorage.getItem('username');
 }
-if (sessionStorage.getItem('loggedin')){
-    var pfp = document.getElementById("nav_account").children[0];
-    document.getElementById("nav_account").href = 'account.html';
-    pfp.src = 'img/profile/pfp.avif';
-    pfp.style.borderRadius = "100px";
-    pfp.style.border = "2px rgb(10,10,70) solid";
-    pfp.style.height = "45px";
+if (sessionStorage.getItem('loggedin') == "true"){
+    document.getElementById("nav-links-login").children[0].src = "img/profile/pfp.avif";
+    document.getElementById("nav-links-login").href = "account.html";
 }
 if (document.getElementById("search") != null){
     formSearch.addEventListener('submit', handleSearch);
-    console.log("epico");
 }
 function showPassword() {
-    if (passwordField.type === "password") {
+    if (passwordField.type == "password") {
         passwordField.type = "text";
+        eye.src = "img/icons/hide.svg";
     } else {
         passwordField.type = "password";
+        eye.src = "img/icons/view.svg";
     }
 }

@@ -9,13 +9,12 @@
 }
 :root{
     --header_height: 70px;
+    --header_icon_height: 25px;
+
     --burger_size: 25px;
     --burger_line_width: 3px;
     --burger_line_spacing: calc(var(--burger_size)/2 - var(--burger_line_width) * 1.5);
-    --nav_length: 100px;
-    --nav_width: 100px;
 
-    --game_width: 300px;
     --iframe_width: 100vw;
 
     --profile_picture_size: 80px;
@@ -26,464 +25,271 @@
     --profile_overview_width: 1100px;
 }
 h1{font-size: 1.45rem; color: white;}
-h2{font-size: 1.25rem; color: rgb(255, 255, 255); font-weight: 800;}
-h3{font-size: 1rem; color: rgb(255, 255, 255);}
+h1 a{font-size: 1.45rem; color: white;}
+h2{font-size: 1rem; color: white;}
+h2 a{font-size: 1rem; color: rgb(255, 255, 255); font-weight: 500;}
+h3{font-size: 1.4rem; color: rgb(255, 255, 255);}
 h4{font-size: 1rem; color: rgb(160, 160, 160);}
-a{font-size: 1rem; color: white; text-decoration: none;}
-p{font-size: 1rem; color: white;}
+a{font-size: 0rem; color: white; text-decoration: none;}
+p{font-size: 0.9rem; color: rgb(255, 255, 255); font-weight: 400;}
 
-body{
-    background-color: rgb(14, 18, 30);
+body{background-color: rgb(14, 18, 30);}
+header{background-color: rgb(19, 30, 48);}
+nav{background-color: rgb(19, 30, 48);}
+.game{background-color: rgba(255, 255, 255, 0.02);}
+button{background-color: #1d2f4b;}
+iframe{background-color: black;}
+#account-grid-wrapper > *{background-color: rgb(28, 33, 47);}
+
+/* Set a style for all buttons */
+button {
+    color: white;
+    border: none;
+}
+button:hover {
+    cursor: pointer;
+    opacity: 0.8;
 }
 
+hr{
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+
 #flex-wrapper{
-    padding-top: var(--header_height);
     display: flex;
     flex-direction: column;
     align-items: center;
 
     width: 100%;
+
+    margin-top: var(--header_height);
 }
 
 header{
-    z-index: 2;
     position: fixed;
     top: 0;
+
+    z-index: 1;
+
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 15px;
-    height: var(--header_height);
     width: 100%;
-    background-color: rgb(19, 30, 48);
+    height: var(--header_height);
+}
+h1{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+header > a > img{
+    height: var(--header_icon_height);
+}
+#burger {
+    width: var(--burger_size);
+    height: var(--burger_size);
+    cursor: pointer;
+}
+#burger div {
+    height: var(--burger_line_width);
+    margin-bottom: var(--burger_line_spacing);
+
+    border-radius: calc(var(--burger_line_width) / 2);
+
+    background-color: white;
+
+    transition: all 0.25s;
+}
+nav{
+    transform: scaleY(0); 
+}
+#nav-links{
+    position: fixed;
+    top: var(--header_height);
+    overflow: hidden;
+    transform-origin: top;
+    transition: all 0.25s;
 }
 
-header a img{
-    height: 35px;
-}
+/* när burger är aktiv */
+.burger-toggle #line_1 {transform: translate(0, calc(var(--burger_line_spacing) + var(--burger_line_width))) rotate(-45deg);}
+.burger-toggle #line_2 {transform: rotate(45deg);}
+.burger-toggle #line_3 {transform: translate(0, calc(-1*var(--burger_line_spacing) - var(--burger_line_width))) rotate(45deg);}
+.nav-active{transform: scaleY(1);}
 
 footer{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
 
+    width: 100%;
     height: 200px;
-    width: 100%;
-
-    margin-top: 25px;
-}
-
-footer hr{
-    width: 100%;
-    height: 2px;
-
-    margin: 10px 0;
-    
-    stroke: 0;
-    fill: 0;
-    border: 0;
-
-    background-color: rgba(129, 184, 248, 0.1);
 }
 
 footer p{
-    margin-left: 5px;
     color: rgba(255, 255, 255, 0.386);
 }
 
 iframe{
-    max-width: 100%;
-    max-height: 90vh;
-    width: var(--iframe_width);
-    height: calc(var(--iframe_width) * 0.75 + 50px);
-    border: 0;
+    aspect-ratio: 16 / 9;
+    height: 80vh;
+
+    border: none;
+}
+
+#game_info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 #binder{
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    padding: 15px 5px 0 5px;
-
-    width: 100%;
-}
-
-#binder a{
-    width: 100%;
-}
-
-#load-more{
-    max-width: 100%;
-    height: 55px;
-    width: calc(var(--game_width) * 4 + 7.5px * 4);
-    margin: 0px 10px;
-    border-radius: 12px;
-    background-color: rgb(21, 31, 49);
-    border: 2px solid rgba(255, 255, 255, 0.173);
-    outline: 0;
-    color:white;
-    font-size: 1.25rem;
-}
-#load-more:hover{
-    cursor: pointer;
 }
 
 .game{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
 
     width: 100%;
-
-    margin-bottom: 10px;
-    padding: 5px;
-
-    border-radius: 15px;
-    border: 2px rgba(255, 255, 255, 0.099) solid;
-    background-color: rgba(255, 255, 255, 0.02);
 }
-
-.game img{
-    object-fit: cover;
+.game > img{
+    aspect-ratio: 16 / 11;
     width: 100%;
 
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-#game_info{
-    display: flex;
-    flex-direction: column;
-    padding: 10px 10px 0 10px;
-    width: 100%;
-}
-
-#account_overview{
-    position: relative;
-    height: var(--profile_overview_banner);
-    width: 100%;
-}
-
-#account_info{
-    position: absolute;
-    bottom: -5px;
-    display: grid;
-    grid-template-columns: var(--profile_picture_size) 1fr;
-    grid-template-rows: calc(var(--profile_picture_size)/2) calc(var(--profile_picture_size)/4) calc(var(--profile_picture_size)/4);
-    grid-template-areas: 
-    "pf .."
-    "pf na"
-    "pf co"
-    "pf ..";
-
-    margin-left: 10px;
-}
-
-#account_info #account_pfp{grid-area: pf;}
-#account_name{grid-area: na; font-size: 1.05rem;}
-#account_things {grid-area: co; font-size: 0.8rem; margin-top: 1px;}
-#account_info > *:not(#account_pfp){margin-left: 10px;}
-
-#account_pfp{
-    height: var(--profile_picture_size);
-
-    border-radius: var(--profile_picture_radius);
-    border: 2px rgb(13, 19, 52) solid;
-}
-
-#account_info > *:not(#account_pfp){
-    margin-left: 10px;
-}
-
-#account_banner{
-    position: relative;
-    z-index: -1;
-
-    max-width: 100%;
-    height: var(--profile_banner_height);
-    width: var(--profile_banner_width);
-    
     object-fit: cover;
 }
 
-#account_grid_wrapper{
+.form-login-register{
     display: flex;
     flex-direction: column;
     align-items: center;
+
     max-width: 100%;
-    width: var(--profile_overview_width);
-    height: 650px;
-    padding: 20px 10px;
+    width: 500px;
 }
-#account_grid_wrapper > *{
+.form-login-register > *{
     width: 100%;
-    height: 100%;
-
-    margin-bottom: 15px;
-    padding: 15px 10px;
-    
-    border-radius: 10px;
-    background-color: rgb(28, 33, 47);
+    text-align: center;
 }
-
-nav{
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: var(--header_height);
-    width: 100px;
-}
-
-#burger {
-    z-index: 2;
-    width: var(--burger_size);
-    height: var(--burger_size);
-    cursor: pointer;
-}
-
-#burger div {
-    height: var(--burger_line_width);
-    margin-bottom: var(--burger_line_spacing);
-
-    border-radius: calc(var(--burger_line_width) / 2);
-    background-color: white;
-    transition: all 0.25s;
-}
-
-#nav-links {
-    z-index: 1;
-    position: absolute;
-    top: var(--header_height);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-
-    overflow: hidden;
-    width: var(--nav_width);
-
-    padding-left: 5px;
-
-    background-color: rgb(20, 32, 43);
-    transition: all 0.25s;
-}
-
-nav > *{
-    height: 0;
-}
-
-#nav-links li {
-    list-style: none;
-    text-decoration: none;
-}
-
-#nav-links a {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: white;
-}
-
-/* när burger är aktiv */
-.burger_toggle #line_1 {transform: translate(0, calc(var(--burger_line_spacing) + var(--burger_line_width))) rotate(-45deg);}
-.burger_toggle #line_2 {transform: rotate(45deg);}
-.burger_toggle #line_3 {transform: translate(0, calc(-1*var(--burger_line_spacing) - var(--burger_line_width))) rotate(45deg);}
-.nav_active {height:var(--nav_length);}
-
-/* Bordered form */
-form {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    max-width: 100%;
-    width: 450px;
-    padding: 20px;
-    border-radius: 15px;
-
-    margin: 50px 0;
-    color: white;
-
-    border: 2px rgba(255, 255, 255, 0.052) solid;
-}
-
-form > *{
-    margin: 7px 0;
-}
-
-form > :last-child{
-    margin: 20px 0;
-}
-  
-/* Full-width inputs */
 input[type=text], input[type=password] {
+    text-align: left;
     width: 100%;
-    padding: 14px 20px;
-    border-radius: 10px;
     outline: 0;
     border: 0;
     background-color: rgb(27, 33, 49);
     color: white;
 }
-
 input::placeholder{
     color: rgba(174, 193, 249, 0.396);
 }
-  
-/* Set a style for all buttons */
-button {
-    background-color: #1d2f4b;
-    color: white;
-    padding: 14px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    border-radius: 12px;
-}
-  
-/* Add a hover effect for buttons */
-button:hover {
-    opacity: 0.8;
-}
 
 .password-container{
-    width: 100%;
     position: relative;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
 }
-.fa-eye{
+.eye{
     position: absolute;
-    top: 28%;
-    right: 4%;
+    right: 0;
     cursor: pointer;
     color: lightgray;
+    height: 1rem;
 }
 
 @media only screen and (min-width: 700px){
     :root{
         --profile_picture_size: 120px;
-        --profile_picture_radius: 60px;
-        --profile_overview_banner: 350px;
-        --profile_banner_height: calc(var(--profile_overview_banner) - var(--profile_picture_size) / 2);
-    }
-    #binder{
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: center;
-    }
-    #binder a{
-        margin: 0 5px;
-        width: var(--game_width);
+
+        --game_width: 300px;
+        --games_per_row: 4;
+        --binder_width: calc(var(--game_width) * var(--games_per_row));
     }
     header{
         display: flex;
         justify-content:space-between;
     }
-    h1{
-        position: absolute;
-        left: 50%;
-        bottom: calc(var(--header_height) / 2 - 2rem / 2);
-        transform: translateX(-50%);
-    }
-    nav{
-        position: static;
-        height: fit-content;
-    }
     #nav-links{
-        position: relative;
-        top: 0;
-        left: 0;
-
+        position: static;
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-
-        height: fit-content;
-        width: fit-content;
-        background-color: transparent;
-
-        padding-left: 5px;
-    }
-    #nav-links li{
-        height: fit-content;
-        margin-right: 20px;
-    }
-    .nav_active{
-        transform: translateY(0);
+        transform: scaleY(1);
+        transition: none;
     }
     #burger{
         display: none;
     }
 
-    #account_overview{
+    #binder{
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+
+        max-width: var(--binder_width);
+    }
+    .game{
+        width: var(--game_width);
+    }
+    #load-more{
+        width: 100%;
+    }
+    
+    #account-banner{
+        width: 100%;
+        height: 400px;
+
+        object-fit: cover;
+    }
+    #account-overview{
+        position: relative;
+        top: calc(0px - var(--profile_picture_size) / 2.5);
+
         display: flex;
         flex-direction: column;
         align-items: center;
-        position: relative;
-        height: var(--profile_overview_banner);
-    }
-    
-    #account_info{
+
         max-width: 100%;
-        width: var(--profile_overview_width);
-        padding: 0 10px;
+        width: 1200px;
     }
-    
-    #account_info #account_pfp{grid-area: pf;}
-    #account_info h3{grid-area: na; font-size: 1.5rem;}
-    #account_info h4{grid-area: co; font-size: 1rem; margin-top: 3px;}
-    #account_info > *:not(#account_pfp){margin-left: 10px;}
-    
-    #account_info > *:not(#account_pfp){
-        margin-left: 10px;
-    }
-    
-    #account_banner{
-        position: relative;
-        z-index: -1;
-    
-        max-width: 100%;
-        height: var(--profile_banner_height);
-        width: var(--profile_banner_width);
-        
-        object-fit: cover;
-    }
-    
-    #account_stats{
-        grid-area: st;
-    }
-
-    #account_activity{
-        grid-area: ac;
-    }
-
-    #account_liked{
-        grid-area: li;
-    }
-
-    #account_grid_wrapper{
+    #account-overview-info{
         display: grid;
-        grid-template-columns: 1fr 3fr;
-        grid-template-rows: 6fr 5fr;
-        grid-gap: 20px;
+        grid-template-columns: var(--profile_picture_size) 1fr;
+        grid-template-rows: calc(var(--profile_picture_size) * 7.5 / 15) calc(var(--profile_picture_size) * 4.5 / 15) calc(var(--profile_picture_size) * 3 / 15);
+        grid-template-areas: 
+        "pr .."
+        "pr na"
+        "pr in";
+
+        width: 100%;
+    }
+    #account-pfp{grid-area: pr;}
+    #account-name{grid-area: na;}
+    #account-things{grid-area: in;}
+    #account-overview-info > *{width: 100%;}
+
+    #account-grid-wrapper{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 4fr 3fr;
         grid-template-areas:
         "st li"
         "ac li";
-        max-width: 100%;
-        width: var(--profile_overview_width);
-        height: 650px;
-        margin: 10px 0;
-    }
 
-    #account_grid_wrapper > *{
-        position: relative;
-        border-radius: 10px;
-        background-color: rgb(28, 33, 47);
-        padding: 15px 10px;
-        margin: 0;
+        width: 100%;
+        height: 700px;
     }
+    #account-stats{grid-area: st;}
+    #account-liked{grid-area: li;}
+    #account-activity{grid-area: ac;}
 }

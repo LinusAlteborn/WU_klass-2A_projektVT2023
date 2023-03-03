@@ -5,21 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <title>Binus Spelus</title>
 </head>
 <body>
     <div id="flex-wrapper">
         <header></header> <!-- koden för header finns i javascript filen -->
 
-        <form id="form_login">
-            <h2>Login to Binus Spelus</h2>
-            <input type="text" placeholder="Enter Username" name="username" id="username_field" required>
+        <form id="form-login" class="form-login-register">
+            <h3>Sign In</h3>
+            <input type="text" placeholder="Enter Username" name="username" id="username-field" required>
             <div class="password-container">
-                <input type="password" placeholder="Enter Password" name="password" id="password_field" required>
-                <i class="fa-solid fa-eye" id="eye"></i>
+                <input type="password" placeholder="Enter Password" name="password" id="password-field" required>
+                <img src="img/icons/view.svg" alt="password-eye" class="eye">
             </div>
-            <button type="submit" id="loginButton">login</button>
+            <button type="submit" value="login">LOGIN</button>
+            <hr>
+            <p>or sign up here</p>
+            <h2><a href="register.html">SIGN UP</a></h2>
         </form>
 
         <footer></footer> <!-- koden för footer finns i javascript filen -->
