@@ -14,16 +14,8 @@
     --burger_size: 25px;
     --burger_line_width: 3px;
     --burger_line_spacing: calc(var(--burger_size)/2 - var(--burger_line_width) * 1.5);
-
-    --iframe_width: 100vw;
-
-    --profile_picture_size: 80px;
-    --profile_picture_radius: 100px;
-    --profile_banner_width: 100%;
-    --profile_overview_banner: 250px;
-    --profile_banner_height: calc(var(--profile_overview_banner) - var(--profile_picture_size) / 2);
-    --profile_overview_width: 1100px;
 }
+/* Text styling */
 h1{font-size: 1.45rem; color: white;}
 h1 a{font-size: 1.45rem; color: white;}
 h2{font-size: 1rem; color: white;}
@@ -33,26 +25,57 @@ h4{font-size: 1rem; color: rgb(160, 160, 160);}
 a{font-size: 0rem; color: white; text-decoration: none;}
 p{font-size: 0.9rem; color: rgb(255, 255, 255); font-weight: 400;}
 
-body{background-color: rgb(14, 18, 30);}
-header{background-color: rgb(19, 30, 48);}
-nav{background-color: rgb(19, 30, 48);}
-.game{background-color: rgba(255, 255, 255, 0.02);}
-button{background-color: #1d2f4b;}
-iframe{background-color: black;}
-#account-grid-wrapper > *{background-color: rgb(28, 33, 47);}
 
-/* Set a style for all buttons */
-button {
-    color: white;
-    border: none;
-}
+
+/* Tycker det är bra att samla färg och border styling på samma ställe då det handlar om relationen mellan dessa färger */
+/* Bakgrunds färger */
+body                                {background-color: rgb(14, 18, 30);}
+header                              {background-color: rgb(19, 30, 48);}
+#burger div                         {background-color: white;}
+nav                                 {background-color: rgb(19, 30, 48);}
+.game                               {background-color: rgba(255, 255, 255, 0.02);}
+button                              {background-color: #1d2f4b;}
+iframe                              {background-color: black;}
+#account-grid-wrapper > *           {background-color: rgb(28, 33, 47);}
+input                               {background-color: rgb(27, 33, 49);}
+
+/* Färg */
+footer p                            {color: rgba(255, 255, 255, 0.386);}
+button                              {color: white;}
+input                               {color: white;}
+input::placeholder                  {color: rgba(174, 193, 249, 0.396);}
+
+/* Border styling */
+.game                               {border: none}
+iframe                              {border: none}
+hr                                  {border: 1px solid rgb(36, 39, 43);}
+button                              {border: none;}
+input                               {border: none;}
+
+/* Border radius */
+#burger div                         {border-radius: calc(var(--burger_line_width) / 2);}
+.game                               {border-radius: 0px;}
+#account-grid-wrapper > *           {border-radius: 0px;}
+
 button:hover {
     cursor: pointer;
     opacity: 0.8;
 }
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-hr{
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 100%;
+    width: 500px;
+}
+form > *{
+    width: 100%;
+    text-align: center;
+}
+input{
+    text-align: center;
+    outline: 0;
 }
 
 
@@ -64,9 +87,11 @@ hr{
 
     width: 100%;
 
-    margin-top: var(--header_height);
+    padding-top: var(--header_height);
 }
 
+
+/* HEADER */
 header{
     position: fixed;
     top: 0;
@@ -74,7 +99,6 @@ header{
     z-index: 1;
 
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
 
@@ -89,21 +113,20 @@ h1{
 header > a > img{
     height: var(--header_icon_height);
 }
+
+
+
+/* BURGER */
 #burger {
     width: var(--burger_size);
-    height: var(--burger_size);
     cursor: pointer;
 }
 #burger div {
     height: var(--burger_line_width);
-    margin-bottom: var(--burger_line_spacing);
-
-    border-radius: calc(var(--burger_line_width) / 2);
-
-    background-color: white;
 
     transition: all 0.25s;
 }
+#burger > *:not(:last-child){margin-bottom: var(--burger_line_spacing);}
 nav{
     transform: scaleY(0); 
 }
@@ -114,13 +137,14 @@ nav{
     transform-origin: top;
     transition: all 0.25s;
 }
-
-/* när burger är aktiv */
-.burger-toggle #line_1 {transform: translate(0, calc(var(--burger_line_spacing) + var(--burger_line_width))) rotate(-45deg);}
-.burger-toggle #line_2 {transform: rotate(45deg);}
-.burger-toggle #line_3 {transform: translate(0, calc(-1*var(--burger_line_spacing) - var(--burger_line_width))) rotate(45deg);}
+.burger-toggle > div:nth-child(1) {transform: translateY(calc(var(--burger_line_spacing) + var(--burger_line_width))) rotate(-45deg);}
+.burger-toggle > div:nth-child(2) {transform: rotate(45deg);}
+.burger-toggle > div:nth-child(3) {transform: translateY(calc(-1*var(--burger_line_spacing) - var(--burger_line_width))) rotate(45deg);}
 .nav-active{transform: scaleY(1);}
 
+
+
+/* FOOTER */
 footer{
     display: flex;
     flex-direction: column;
@@ -129,29 +153,27 @@ footer{
     height: 200px;
 }
 
-footer p{
-    color: rgba(255, 255, 255, 0.386);
-}
 
+
+/* GAME.html */
 iframe{
     aspect-ratio: 16 / 9;
     height: 80vh;
-
-    border: none;
 }
-
 #game_info{
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
+
+
+/* BINDER */
 #binder{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 .game{
     display: flex;
     flex-direction: column;
@@ -160,51 +182,30 @@ iframe{
     width: 100%;
 }
 .game > img{
-    aspect-ratio: 16 / 11;
+    aspect-ratio: 16 / 10;
     width: 100%;
 
     object-fit: cover;
 }
 
-.form-login-register{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
-    max-width: 100%;
-    width: 500px;
-}
-.form-login-register > *{
-    width: 100%;
-    text-align: center;
-}
-input[type=text], input[type=password] {
-    text-align: left;
-    width: 100%;
-    outline: 0;
-    border: 0;
-    background-color: rgb(27, 33, 49);
-    color: white;
-}
-input::placeholder{
-    color: rgba(174, 193, 249, 0.396);
-}
 
+/* LOGIN/REGISTER */
 .password-container{
     position: relative;
 
     display: flex;
-    flex-direction: row;
     align-items: center;
-
+}
+.password-container input{
     width: 100%;
 }
 .eye{
     position: absolute;
     right: 0;
     cursor: pointer;
-    color: lightgray;
-    height: 1rem;
+    
+    max-height: 100%;
 }
 
 @media only screen and (min-width: 700px){
@@ -215,14 +216,9 @@ input::placeholder{
         --games_per_row: 4;
         --binder_width: calc(var(--game_width) * var(--games_per_row));
     }
-    header{
-        display: flex;
-        justify-content:space-between;
-    }
     #nav-links{
         position: static;
         display: flex;
-        flex-direction: row;
         transform: scaleY(1);
         transition: none;
     }

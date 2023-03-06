@@ -1,4 +1,4 @@
-//json databas som har all information om spelen
+// Data för alla mina spel
 var games = [
     {"name": "8 Ball Pool", "engine": "Scratch"},
     {"name": "Tunnel Runner 3D", "engine": "Scratch"},
@@ -6,80 +6,58 @@ var games = [
     {"name": "Candy Clicker 2", "engine": "Scratch"}
 ]
 
-//mina html templates som jag placerar genom javascript för extra flexibilitet och effektivitet
-var templates =
-{
-"header":
-(
-'<nav id="nav-links">' +
-'    <h2><a href="#">About</a></h2>' +
-'    <h2><a href="#">Contact</a></h2>' +
-'    <h2><a href="#">Forum</a></h2>' +
-'</nav>' +
-'    <div id="burger">' +
-'       <div class="hamburger_line" id="line_1"></div>' +
-'       <div class="hamburger_line" id="line_2"></div>' +
-'       <div class="hamburger_line" id="line_3"></div>' +
-'    </div>' +
-'    <h1><a href="index.html">Binus Spelus</a></h1>' +
-'<a href="login.html" id="nav-links-login"><img src="img/icons/account.svg" alt="login"></a>'
-),
+// Mina html templates som jag placerar i html sidor (jag använder semikolon för att kunna gömma dem templates jag inte använder)
+var templates ={
+    "header":(
+    '<nav id="nav-links">' +
+    '   <h2><a href="#">About</a></h2>' +
+    '   <h2><a href="#">Contact</a></h2>' +
+    '   <h2><a href="#">Forum</a></h2>' +
+    '</nav>' +
+    '<div id="burger">' +
+    '   <div></div>' +
+    '   <div></div>' +
+    '   <div></div>' +
+    '</div>' +
+    '<h1><a href="index.html">Binus Spelus</a></h1>' +
+    '<a href="login.html" id="nav-links-login"><img src="img/icons/account.svg" alt="login"></a>'
+    ),
 
-"footer":
-(
-'<hr>' +
-'<p>Binus© 2023</p>'
-),
-
-"game":
-(
-'<img src="img/thumbnails/1.png" alt="name">' +
-'<h2>name</h2>'
-)
+    "footer":(
+    '<hr>' +
+    '<p>Binus© 2023</p>'
+    )
 }
 
-function header_footer(){
+// Funktioner som jag kommer använda senare
+function load_header_and_footer(){
     document.getElementsByTagName("header")[0].innerHTML = templates.header;
     document.getElementsByTagName("footer")[0].innerHTML = templates.footer;
 }
 
-function toggleMenu(){
-    burger.classList.toggle('burger-toggle');
-    nav.classList.toggle('nav-active');
+function burger_menu(){
+    document.getElementById('burger').classList.toggle('burger-toggle');
+    document.getElementById('nav-links').classList.toggle('nav-active');
 }
 
-function addGame(id){
-    var new_game = document.createElement("a");
-    new_game.innerHTML = templates.game;
-    new_game.getElementsByTagName("img")[0].src = "img/thumbnails/" + id + ".png";
-    new_game.getElementsByTagName("h2")[0].innerHTML = games[id].name;
-    new_game.href = "game.html?" + id;
-    new_game.classList = "game";
+function add_game(game_id){
+    var new_game = Object.assign(document.createElement('a'), {href:`game.html?${game_id}`, classList:"game"});
+    new_game.appendChild(Object.assign(document.createElement('img'), {src:`img/thumbnails/${game_id}.png`, alt:games[game_id].name}));
+    new_game.appendChild(Object.assign(document.createElement('h2'), {innerHTML:games[game_id].name}));
+
     document.getElementById("binder").appendChild(new_game);
 }
 
 function load_more_games(amount){
     var start = document.getElementById("binder").childElementCount - 1;
     for(var i = start; i < start + amount; i++){
-        addGame(i);
+        add_game(i);
         if (i >= games.length - 1){
             document.getElementById("load-more").remove();
             return
         }
     }
     document.getElementById("binder").appendChild(document.getElementById("load-more"));
-}
-
-function login() {
-    if (usernameField.value == sessionStorage.getItem('username')){
-        if (passwordField.value == sessionStorage.getItem('password')){
-            sessionStorage.setItem('loggedin', true);
-            window.location.assign('account.html');
-            return
-        }
-    }
-    sessionStorage.setItem('loggedin', false);
-    window.location.assign('login.html');
 }
 
 function handleForm(event) {
@@ -89,30 +67,32 @@ function handleForm(event) {
     if (submitter === "register"){ register(); }
 }
 
+function login() {
+    if (usernameField.value == sessionStorage.getItem('username') && passwordField.value == sessionStorage.getItem('password')){
+        sessionStorage.setItem('loggedin', true);
+        window.location.assign('account.html');
+        return
+    }
+    logout();
+}
 function logout(){
     sessionStorage.setItem('loggedin', false);
     window.location.assign('login.html');
 }
-
 function register(){
     sessionStorage.setItem('username', usernameField.value);
     sessionStorage.setItem('password', passwordField.value);
     window.location.assign('login.html');
 }
 
-function handleSearch(){
 
-}
 
-header_footer();
-const burger = document.getElementById('burger');
-burger.addEventListener('click', toggleMenu);
-const nav = document.getElementById('nav-links');
+load_header_and_footer();
+document.getElementById('burger').addEventListener('click', burger_menu);
 const usernameField = document.getElementById("username-field");
 const passwordField = document.getElementById("password-field");
 const eye = document.getElementsByClassName("eye")[0];
-const form = document.getElementsByClassName("form-login-register")[0];
-const formSearch = document.getElementById("formSearch");
+const form = document.getElementsByTagName("form")[0];
 if (document.getElementById("game") != null){
     document.getElementById("game").src = "games/" + location.search.substring(1) + "/index.html";
     document.getElementById("game_info_name").innerHTML = games[location.search.substring(1)].name;
@@ -123,6 +103,7 @@ if (document.getElementById("binder") != null){
 }
 if (form != null){
     form.addEventListener('submit', handleForm);
+    eye.addEventListener('click', showPassword);
 }
 if (document.getElementById("account-overview") != null){
     document.getElementById("account-name").innerHTML = sessionStorage.getItem('username');
