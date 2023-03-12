@@ -10,7 +10,7 @@ var games = [
 var templates ={
     "header":(
     '<nav id="nav-links">' +
-    '   <h2><a href="#">About</a></h2>' +
+    '   <h2><a href="about.html">About</a></h2>' +
     '   <h2><a href="#">Contact</a></h2>' +
     '   <h2><a href="#">Forum</a></h2>' +
     '</nav>' +

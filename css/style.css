@@ -57,6 +57,9 @@ input                               {border: none;}
 .game                               {border-radius: 0px;}
 #account-grid-wrapper > *           {border-radius: 0px;}
 
+
+
+/* återanvända element */
 button:hover {
     cursor: pointer;
     opacity: 0.8;
