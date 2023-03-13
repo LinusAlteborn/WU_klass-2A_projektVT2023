@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap');
 
+/* GLOBAL */
 *{
     margin: 0;
     padding: 0;
@@ -15,20 +16,19 @@
     --burger_line_width: 3px;
     --burger_line_spacing: calc(var(--burger_size)/2 - var(--burger_line_width) * 1.5);
 }
+
+
 /* Text styling */
 h1      {font-size: 1.45rem;    color: white;}
 h1 a    {font-size: 1.45rem;    color: white;}
 h2      {font-size: 1rem;       color: white;}
-h2 a    {font-size: 1rem;       color: rgb(255, 255, 255);          font-weight: 500;}
+h2 a    {font-size: 1rem;       color: rgb(255, 255, 255);      font-weight: 500;}
 h3      {font-size: 1.4rem;     color: rgb(255, 255, 255);}
 h4      {font-size: 1rem;       color: rgb(160, 160, 160);}
-a       {font-size: 0;          color: white;                                                   text-decoration: none;}
-p       {font-size: 0.9rem;     color: rgb(120, 125, 133);          font-weight: 600;}
+a       {font-size: 0;          color: white;                                           text-decoration: none;}
+p       {font-size: 0.9rem;     color: rgb(120, 125, 133);      font-weight: 600;}
 
-
-
-/* Tycker det är bra att samla färg och border styling på samma ställe då det handlar om relationen mellan dessa färger */
-/* Bakgrunds färger */
+/* Bakgrunds färg */
 body                                {background-color: rgb(14, 18, 30);}
 header                              {background-color: rgb(19, 30, 48);}
 #burger div                         {background-color: white;}
