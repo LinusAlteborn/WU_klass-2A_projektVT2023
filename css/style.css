@@ -15,12 +15,15 @@
     --burger_size: 25px;
     --burger_line_width: 3px;
     --burger_line_spacing: calc(var(--burger_size)/2 - var(--burger_line_width) * 1.5);
+
+    --profile_picture_size: 100px;
 }
 
 
 /* Text styling */
 h1      {font-size: 1.45rem;    color: white;}
 h1 a    {font-size: 1.45rem;    color: white;}
+h1 img  {height: 3.5rem;}
 h2      {font-size: 1rem;       color: white;}
 h2 a    {font-size: 1rem;       color: rgb(255, 255, 255);      font-weight: 500;}
 h3      {font-size: 1.4rem;     color: rgb(255, 255, 255);}
@@ -36,7 +39,7 @@ nav                                 {background-color: rgb(19, 30, 48);}
 .game                               {background-color: rgba(255, 255, 255, 0.02);}
 button                              {background-color: #1d2f4b;}
 iframe                              {background-color: black;}
-#account-grid-wrapper > *           {background-color: rgb(28, 33, 47);}
+#account-inner-wrapper > *          {background-color: rgb(28, 33, 47);}
 input                               {background-color: rgb(27, 33, 49);}
 
 /* Färg */
@@ -210,6 +213,57 @@ iframe{
     max-height: 100%;
 }
 
+
+/* ACCOUNT */
+#account-banner{
+    width: 100%;
+    height: 400px;
+
+    object-fit: cover;
+}
+#account-overview{
+    position: relative;
+    top: calc(0px - var(--profile_picture_size) / 2.5);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+}
+#account-overview-info{
+    display: grid;
+    grid-template-columns: var(--profile_picture_size) 1fr;
+    grid-template-rows: calc(var(--profile_picture_size) * 7.5 / 15) calc(var(--profile_picture_size) * 4.5 / 15) calc(var(--profile_picture_size) * 3 / 15);
+    grid-template-areas: 
+    "pr .."
+    "pr na"
+    "pr in";
+
+    width: 100%;
+}
+#account-pfp{grid-area: pr;}
+#account-name{grid-area: na;}
+#account-things{grid-area: in;}
+#account-overview-info > *{width: 100%;}
+
+#account-inner-wrapper{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+}
+#account-stats{grid-area: st;}
+#account-liked{grid-area: li;}
+#account-activity{grid-area: ac;}
+
+
+/* ABOUT */
+.about_card{
+    width: 100%;
+    text-align: center;
+}
+
 @media only screen and (min-width: 700px){
     :root{
         --profile_picture_size: 120px;
@@ -290,7 +344,7 @@ iframe{
     #account-things{grid-area: in;}
     #account-overview-info > *{width: 100%;}
 
-    #account-grid-wrapper{
+    #account-inner-wrapper{
         display: grid;
         grid-template-columns: 1fr 2fr;
         grid-template-rows: 4fr 3fr;

@@ -19,7 +19,7 @@ var templates ={
     '   <div></div>' +
     '   <div></div>' +
     '</div>' +
-    '<h1><a href="index.html">Binus Spelus</a></h1>' +
+    '<h1><a href="index.html"><img src="img/icons/logo.png" alt="Binus Spelus"></a></h1>' +
     '<a href="login.html" id="nav-links-login"><img src="img/icons/account.svg" alt="login"></a>'
     ),
 
