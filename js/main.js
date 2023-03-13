@@ -33,6 +33,32 @@ var templates ={
 function load_header_and_footer(){
     document.getElementsByTagName("header")[0].innerHTML = templates.header;
     document.getElementsByTagName("footer")[0].innerHTML = templates.footer;
+    document.getElementById('burger').addEventListener('click', burger_menu);
+}
+
+// Här är alla funktioner som ändrar sidan när den startar (ändrar spel texter, ändrar användarnamns texter osv)
+function load_site(name){
+    if (name === "index"){
+        load_more_games(8);
+        //form.addEventListener('submit', handleSearch);
+    }
+    if (name === "game"){
+        document.getElementById("game").src = "games/" + game_id + "/index.html";
+        document.getElementById("game_info_name").innerHTML = games[game_id].name;
+        document.getElementById("game_info_engine").innerHTML = "Made in " + games[game_id].engine;
+    }
+    if (name === "login" || name === "register"){
+        form.addEventListener('submit', handleForm);
+        eye.addEventListener('click', showPassword);
+    }
+    if (name === "account"){
+        document.getElementById("account-name").innerHTML = sessionStorage.getItem('username');
+    }
+    // visar din profil bild och byter länk till account sidan om du är inloggad
+    if (sessionStorage.getItem('loggedin') == "true"){
+        document.getElementById("nav-links-login").children[0].src = "img/profile/pfp.avif";
+        document.getElementById("nav-links-login").href = "account.html";
+    }
 }
 
 function burger_menu(){
@@ -84,37 +110,6 @@ function register(){
     sessionStorage.setItem('password', passwordField.value);
     window.location.assign('login.html');
 }
-
-
-
-load_header_and_footer();
-document.getElementById('burger').addEventListener('click', burger_menu);
-const usernameField = document.getElementById("username-field");
-const passwordField = document.getElementById("password-field");
-const eye = document.getElementsByClassName("eye")[0];
-const form = document.getElementsByTagName("form")[0];
-if (document.getElementById("game") != null){
-    document.getElementById("game").src = "games/" + location.search.substring(1) + "/index.html";
-    document.getElementById("game_info_name").innerHTML = games[location.search.substring(1)].name;
-    document.getElementById("game_info_engine").innerHTML = "Made in " + games[location.search.substring(1)].engine;
-}
-if (document.getElementById("binder") != null){
-    load_more_games(8);
-}
-if (form != null){
-    form.addEventListener('submit', handleForm);
-    eye.addEventListener('click', showPassword);
-}
-if (document.getElementById("account-overview") != null){
-    document.getElementById("account-name").innerHTML = sessionStorage.getItem('username');
-}
-if (sessionStorage.getItem('loggedin') == "true"){
-    document.getElementById("nav-links-login").children[0].src = "img/profile/pfp.avif";
-    document.getElementById("nav-links-login").href = "account.html";
-}
-if (document.getElementById("search") != null){
-    formSearch.addEventListener('submit', handleSearch);
-}
 function showPassword() {
     if (passwordField.type == "password") {
         passwordField.type = "text";
@@ -124,3 +119,13 @@ function showPassword() {
         eye.src = "img/icons/view.svg";
     }
 }
+
+
+const usernameField = document.getElementById("username-field")
+const passwordField = document.getElementById("password-field")
+const eye = document.getElementsByClassName("eye")[0]
+const form = document.getElementsByTagName("form")[0]
+const site_name = window.location.pathname.split("/").pop().split(".")[0]
+const game_id = location.search.substring(1)
+load_header_and_footer()
+load_site(site_name)
