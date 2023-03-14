@@ -10,7 +10,7 @@ var games = [
     {id: "7", name: "Brawl.io", engine: "Scratch", date: new Date(2021, 08, 03), elapsed: "just now", link: "https://scratch.mit.edu/projects/556451127/"}
 ]
 
-function timeSince(date) {
+function time_since(date) {
     const seconds = Math.floor((new Date() - date) / 1000);
     const intervals = [
         { label: 'year',   seconds: 31536000 },
@@ -67,7 +67,7 @@ function load_header_and_footer(){
 function load_site(name){
     if (name === "index"){
         load_more_games(8);
-        games.sort(function(a, b) { return b.date - a.date; });
+        games.sort(function(a, b) { return b.date - a.date; }); // sorterar nyast spelen först. Vet inte hur den fungerar... men den fungerar perfekt!
         //form.addEventListener('submit', handleSearch);
     }
     if (name === "game"){
@@ -96,7 +96,7 @@ function burger_menu(){
 
 function add_game(game_id){
     const game = games[game_id]
-    game.elapsed = timeSince(game.date);
+    game.elapsed = time_since(game.date);
     var new_game = Object.assign(document.createElement('a'), {href:`game.html?${game.id}`, classList:"game"});
     new_game.appendChild(Object.assign(document.createElement('img'), {src:`img/thumbnails/${game.id}.png`, alt:game.name}));
     new_game.appendChild(Object.assign(document.createElement('h2'), {innerHTML:game.name}));
