@@ -16,19 +16,23 @@
     --burger_line_width: 3px;
     --burger_line_spacing: calc(var(--burger_size)/2 - var(--burger_line_width) * 1.5);
 
-    --profile_picture_size: 100px;
+    --nav_spacing: 10px;
+
+    --game_spacing: 100px;
+
+    --profile_picture_size: 80px;
 }
 
 
 /* Text styling */
-h1      {font-size: 1.45rem;    color: white;}
-h1 a    {font-size: 1.45rem;    color: white;}
-h1 img  {height: 3.5rem;}
+h1      {font-size: 0;}
+h1 a    {font-size: 0;}
+h1 a img{height: 2.5rem;}
 h2      {font-size: 1rem;       color: white;}
 h2 a    {font-size: 1rem;       color: rgb(255, 255, 255);      font-weight: 500;}
 h3      {font-size: 1.4rem;     color: rgb(255, 255, 255);}
 h4      {font-size: 1rem;       color: rgb(160, 160, 160);}
-a       {font-size: 0;          color: white;                                           text-decoration: none;}
+a       {font-size: 0;                                                                  text-decoration: none;}
 p       {font-size: 0.9rem;     color: rgb(120, 125, 133);      font-weight: 600;}
 
 /* Bakgrunds färg */
@@ -36,7 +40,7 @@ body                                {background-color: rgb(14, 18, 30);}
 header                              {background-color: rgb(19, 30, 48);}
 #burger div                         {background-color: white;}
 nav                                 {background-color: rgb(19, 30, 48);}
-.game                               {background-color: rgba(255, 255, 255, 0.02);}
+.game                               {background-color: rgba(255, 255, 255, 0.13);}
 button                              {background-color: #1d2f4b;}
 iframe                              {background-color: black;}
 #account-inner-wrapper > *          {background-color: rgb(28, 33, 47);}
@@ -109,6 +113,8 @@ header{
 
     width: 100%;
     height: var(--header_height);
+
+    padding: 0 calc(var(--header_height) / 2 - var(--header_icon_height) / 2);
 }
 h1{
     position: absolute;
@@ -138,7 +144,13 @@ nav{
 #nav-links{
     position: fixed;
     top: var(--header_height);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--nav_spacing);
+
     overflow: hidden;
+
     transform-origin: top;
     transition: all 0.25s;
 }
@@ -178,6 +190,8 @@ iframe{
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    gap: var(--game_spacing);
 }
 .game{
     display: flex;
@@ -217,13 +231,13 @@ iframe{
 /* ACCOUNT */
 #account-banner{
     width: 100%;
-    height: 400px;
+    height: 200px;
 
     object-fit: cover;
 }
 #account-overview{
     position: relative;
-    top: calc(0px - var(--profile_picture_size) / 2.5);
+    top: calc(0px - var(--profile_picture_size) / 2.75);
 
     display: flex;
     flex-direction: column;
@@ -234,7 +248,7 @@ iframe{
 #account-overview-info{
     display: grid;
     grid-template-columns: var(--profile_picture_size) 1fr;
-    grid-template-rows: calc(var(--profile_picture_size) * 7.5 / 15) calc(var(--profile_picture_size) * 4.5 / 15) calc(var(--profile_picture_size) * 3 / 15);
+    grid-template-rows: calc(var(--profile_picture_size) * 5.5 / 15) calc(var(--profile_picture_size) * 5 / 15) calc(var(--profile_picture_size) * 4.5 / 15);
     grid-template-areas: 
     "pr .."
     "pr na"
@@ -253,9 +267,6 @@ iframe{
 
     width: 100%;
 }
-#account-stats{grid-area: st;}
-#account-liked{grid-area: li;}
-#account-activity{grid-area: ac;}
 
 
 /* ABOUT */
@@ -266,18 +277,21 @@ iframe{
 
 @media only screen and (min-width: 700px){
     :root{
+        --nav_spacing: 10px;
+
         --profile_picture_size: 120px;
 
         --game_width: 300px;
+        --game_spacing: 10px;
         --games_per_row: 4;
-        --binder_width: calc(var(--game_width) * var(--games_per_row));
+        --binder_width: calc(var(--game_width) * var(--games_per_row) + var(--game_spacing) * calc(var(--games_per_row) - 1));
     }
 
 
     /* HEADER */
     #nav-links{
+        flex-direction: row;
         position: static;
-        display: flex;
         transform: scaleY(1);
         transition: none;
     }
@@ -312,37 +326,17 @@ iframe{
 
     /* ACCOUNT */
     #account-banner{
-        width: 100%;
         height: 400px;
-
-        object-fit: cover;
     }
     #account-overview{
-        position: relative;
         top: calc(0px - var(--profile_picture_size) / 2.5);
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
 
         max-width: 100%;
         width: 1200px;
     }
     #account-overview-info{
-        display: grid;
-        grid-template-columns: var(--profile_picture_size) 1fr;
         grid-template-rows: calc(var(--profile_picture_size) * 7.5 / 15) calc(var(--profile_picture_size) * 4.5 / 15) calc(var(--profile_picture_size) * 3 / 15);
-        grid-template-areas: 
-        "pr .."
-        "pr na"
-        "pr in";
-
-        width: 100%;
     }
-    #account-pfp{grid-area: pr;}
-    #account-name{grid-area: na;}
-    #account-things{grid-area: in;}
-    #account-overview-info > *{width: 100%;}
 
     #account-inner-wrapper{
         display: grid;
@@ -352,7 +346,6 @@ iframe{
         "st li"
         "ac li";
 
-        width: 100%;
         height: 700px;
     }
     #account-stats{grid-area: st;}

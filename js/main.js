@@ -1,10 +1,37 @@
 // Data för alla mina spel
 var games = [
-    {"name": "8 Ball Pool", "engine": "Scratch"},
-    {"name": "Tunnel Runner 3D", "engine": "Scratch"},
-    {"name": "Miner Cat 4", "engine": "Scratch"},
-    {"name": "Candy Clicker 2", "engine": "Scratch"}
+    {id: "0", name: "8 Ball Pool", engine: "Scratch", date: new Date(2022, 08, 31), elapsed: "just now", link: "https://scratch.mit.edu/projects/353994505/"},
+    {id: "1", name: "Tunnel Runner 3D", engine: "Scratch", date: new Date(2021, 07, 20), elapsed: "just now", link: "https://scratch.mit.edu/projects/553825577/"},
+    {id: "2", name: "Miner Cat 4", engine: "Scratch", date: new Date(2022, 01, 25), elapsed: "just now", link: "https://scratch.mit.edu/projects/487580583/"},
+    {id: "3", name: "Candy Clicker 2", engine: "Scratch", date: new Date(2022, 07, 21), elapsed: "just now", link: "https://scratch.mit.edu/projects/332026728/"},
+    {id: "4", name: "Super Auto Scratch", engine: "Scratch", date: new Date(2022, 03, 21), elapsed: "just now", link: "https://scratch.mit.edu/projects/663115790/"},
+    {id: "5", name: "Tap-Tap Shots", engine: "Scratch", date: new Date(2020, 03, 09), elapsed: "just now", link: "https://scratch.mit.edu/projects/373884927/"},
+    {id: "6", name: "Flying Gorilla", engine: "Scratch", date: new Date(2022, 04, 01), elapsed: "just now", link: "https://scratch.mit.edu/projects/661914879/"},
+    {id: "7", name: "Brawl.io", engine: "Scratch", date: new Date(2021, 08, 03), elapsed: "just now", link: "https://scratch.mit.edu/projects/556451127/"}
 ]
+
+function timeSince(date) {
+    const seconds = Math.floor((new Date() - date) / 1000);
+    const intervals = [
+        { label: 'year',   seconds: 31536000 },
+        { label: 'month',  seconds: 2592000 },
+        { label: 'week',   seconds: 604800 },
+        { label: 'day',    seconds: 86400 },
+        { label: 'hour',   seconds: 3600 },
+        { label: 'minute', seconds: 60 },
+        { label: 'second', seconds: 1 }
+    ];
+    
+    for (let i = 0; i < intervals.length; i++) {
+        const interval = intervals[i];
+        const count = Math.floor(seconds / interval.seconds);
+        if (count >= 1) {
+            return count + ' ' + interval.label + (count > 1 ? 's' : '') + ' ago';
+        }
+    }
+    
+    return 'just now';
+}  
 
 // Mina html templates som jag placerar i html sidor (jag använder semikolon för att kunna gömma dem templates jag inte använder)
 var templates ={
@@ -40,6 +67,7 @@ function load_header_and_footer(){
 function load_site(name){
     if (name === "index"){
         load_more_games(8);
+        games.sort(function(a, b) { return b.date - a.date; });
         //form.addEventListener('submit', handleSearch);
     }
     if (name === "game"){
@@ -67,11 +95,15 @@ function burger_menu(){
 }
 
 function add_game(game_id){
-    var new_game = Object.assign(document.createElement('a'), {href:`game.html?${game_id}`, classList:"game"});
-    new_game.appendChild(Object.assign(document.createElement('img'), {src:`img/thumbnails/${game_id}.png`, alt:games[game_id].name}));
-    new_game.appendChild(Object.assign(document.createElement('h2'), {innerHTML:games[game_id].name}));
+    const game = games[game_id]
+    game.elapsed = timeSince(game.date);
+    var new_game = Object.assign(document.createElement('a'), {href:`game.html?${game.id}`, classList:"game"});
+    new_game.appendChild(Object.assign(document.createElement('img'), {src:`img/thumbnails/${game.id}.png`, alt:game.name}));
+    new_game.appendChild(Object.assign(document.createElement('h2'), {innerHTML:game.name}));
+    new_game.appendChild(Object.assign(document.createElement('p'), {innerHTML:game.elapsed}));
 
     document.getElementById("binder").appendChild(new_game);
+    games.sort(function(a, b) { return b.date - a.date; });
 }
 
 function load_more_games(amount){
