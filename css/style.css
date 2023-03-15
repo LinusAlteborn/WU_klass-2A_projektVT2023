@@ -18,7 +18,7 @@
 
     --nav_spacing: 10px;
 
-    --game_spacing: 100px;
+    --game_spacing: 20px;
 
     --profile_picture_size: 80px;
 }
@@ -40,7 +40,7 @@ body                                {background-color: rgb(14, 18, 30);}
 header                              {background-color: rgb(19, 30, 48);}
 #burger div                         {background-color: white;}
 nav                                 {background-color: rgb(19, 30, 48);}
-.game                               {background-color: rgba(255, 255, 255, 0.13);}
+.game                               {background-color: rgba(255, 255, 255, 0);}
 button                              {background-color: #1d2f4b;}
 iframe                              {background-color: black;}
 #account-inner-wrapper > *          {background-color: rgb(28, 33, 47);}
@@ -52,7 +52,7 @@ input                               {color: white;}
 input::placeholder                  {color: rgba(174, 193, 249, 0.396);}
 
 /* Border styling */
-.game                               {border: none}
+.game                               {border: 0}
 iframe                              {border: none}
 hr                                  {border: 1px solid rgb(36, 39, 43);}
 button                              {border: none;}
@@ -60,12 +60,18 @@ input                               {border: none;}
 
 /* Border radius */
 #burger div                         {border-radius: calc(var(--burger_line_width) / 2);}
-.game                               {border-radius: 0px;}
+.game                               {border-radius: 15px;}
+.game img                           {border-radius: 15px;}
 #account-grid-wrapper > *           {border-radius: 0px;}
+button                              {border-radius: 8px;}
 
 
 
 /* återanvända element */
+button{
+    font-size: 1rem;
+    padding: 10px;
+}
 button:hover {
     cursor: pointer;
     opacity: 0.8;
@@ -191,6 +197,7 @@ iframe{
     align-items: center;
 
     gap: var(--game_spacing);
+    margin: var(--game_spacing) 0;
 }
 .game{
     display: flex;
@@ -198,6 +205,9 @@ iframe{
     align-items: center;
 
     width: 100%;
+}
+.game > *:not(:last-child){
+    margin-bottom: 5px;
 }
 .game > img{
     aspect-ratio: 16 / 10;
@@ -281,7 +291,7 @@ iframe{
         --profile_picture_size: 120px;
 
         --game_width: 300px;
-        --game_spacing: 10px;
+        --game_spacing: 15px;
         --games_per_row: 4;
         --binder_width: calc(var(--game_width) * var(--games_per_row) + var(--game_spacing) * calc(var(--games_per_row) - 1));
     }

@@ -66,7 +66,7 @@ function load_header_and_footer(){
 // Här är alla funktioner som ändrar sidan när den startar (ändrar spel texter, ändrar användarnamns texter osv)
 function load_site(name){
     if (name === "index"){
-        load_more_games(8);
+        load_more_games(4);
         games.sort(function(a, b) { return b.date - a.date; }); // sorterar nyast spelen först. Vet inte hur den fungerar... men den fungerar perfekt!
         //form.addEventListener('submit', handleSearch);
     }
