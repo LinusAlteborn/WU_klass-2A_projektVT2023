@@ -1,3 +1,6 @@
+/*
+Hitta ett sätt att göra koden finare. byter man sort-by ska den ladda om thumbnailsen. 
+*/
 // Data för alla mina spel
 var games = [
     {id: "0", name: "8 Ball Pool", engine: "Scratch", date: new Date(2022, 08, 31), elapsed: "just now", link: "https://scratch.mit.edu/projects/353994505/"},
@@ -33,6 +36,15 @@ function time_since(date) {
     return 'just now';
 }  
 
+function sort(by){
+    if (by == "oldest"){
+        games.sort(function(a, b) { return a.date - b.date; });
+    }
+    if (by == "latest"){
+        games.sort(function(a, b) { return b.date - a.date; });
+    }
+}
+
 // Mina html templates som jag placerar i html sidor (jag använder semikolon för att kunna gömma dem templates jag inte använder)
 var templates ={
     "header":(
@@ -67,8 +79,8 @@ function load_header_and_footer(){
 function load_site(name){
     if (name === "index"){
         load_more_games(4);
-        games.sort(function(a, b) { return b.date - a.date; }); // sorterar nyast spelen först. Vet inte hur den fungerar... men den fungerar perfekt!
-        //form.addEventListener('submit', handleSearch);
+        sort("oldest"); // sorterar nyast spelen först. Vet inte hur den fungerar... men den fungerar perfekt!
+        document.getElementById("sort-by").addEventListener("change", sort_by);
     }
     if (name === "game"){
         document.getElementById("game").src = "games/" + game_id + "/index.html";
@@ -92,6 +104,13 @@ function load_site(name){
 function burger_menu(){
     document.getElementById('burger').classList.toggle('burger-toggle');
     document.getElementById('nav-links').classList.toggle('nav-active');
+}
+
+function sort_by(event){
+    const currentValue = event.target.value;
+    if (currentValue == ""){
+        
+    }
 }
 
 function add_game(game_id){

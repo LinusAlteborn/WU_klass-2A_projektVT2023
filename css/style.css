@@ -131,6 +131,32 @@ header > a > img{
     height: var(--header_icon_height);
 }
 
+#section-search{
+    display: flex;
+    flex-direction: row ;
+}
+#form-search{
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 300px;
+    height: 1rem;
+}
+#form-search input{
+    width: 100%;
+    height: 100%;
+}
+#form-search img{
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    
+    max-height: 100%;
+    width: auto;
+}
+
 
 
 /* BURGER */
@@ -279,8 +305,22 @@ iframe{
 
 
 /* ABOUT */
-.about_card{
+#about-binder{
+    display: flex;
+    flex-direction: column;
+
+    width: 30rem;
+    gap: 100px;
+}
+.about-card{
+    display: flex;
+    flex-direction: column;
+
     width: 100%;
+    gap: 0.5rem;
+
+    padding: 10px;
+
     text-align: center;
 }
 
@@ -290,7 +330,7 @@ iframe{
 
         --profile_picture_size: 120px;
 
-        --game_width: 300px;
+        --game_width: 250px;
         --game_spacing: 15px;
         --games_per_row: 4;
         --binder_width: calc(var(--game_width) * var(--games_per_row) + var(--game_spacing) * calc(var(--games_per_row) - 1));

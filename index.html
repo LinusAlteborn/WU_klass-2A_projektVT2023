@@ -11,6 +11,18 @@
     <div id="flex-wrapper">
         <header></header> <!-- koden för header finns i javascript filen -->
 
+        <section id="section-search">
+            <form id="form-search">
+                <input type="text" placeholder="Search for a game..." name="search" id="search-field">
+                <img src="img/icons/search.svg" alt="search" class="search">
+            </form>
+            <label for="sort">sort by:</label>
+            <select name="sort-by" id="sort-by">
+                <option value="latest">Latest</option>
+                <option value="oldest">Oldest</option>
+            </select>
+        </section>
+
         <section id="binder">
             <!-- kommer fyllas på i javascript med min json data -->
             <button id="load-more" onclick="load_more_games(4);">Load more</button>
