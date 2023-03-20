@@ -9,18 +9,40 @@
     font-weight: 700;
 }
 :root{
-    --header_height: 70px;
-    --header_icon_height: 25px;
-
-    --burger_size: 25px;
+    /* header */
+    --header_height: 65px;
+    --logo_height: 1.75rem;
+    --header_icon_height: 20px;
+    /* burger */
+    --burger_size: var(--header_icon_height);
     --burger_line_width: 3px;
     --burger_line_spacing: calc(var(--burger_size)/2 - var(--burger_line_width) * 1.5);
-
+    /* nav */
     --nav_spacing: 10px;
-
+    --nav_padding: 10px 30px 15px 15px;
+    /* footer */
+    --footer_height: 250px;
+    --footer_spacing: 10px;
+    /* game binder */
+    --binder_padding: 15px 10px;
     --game_spacing: 20px;
-
+    /* login-register */
+    --form_login_register_padding: 20px 10px 50px;
+    --form_login_register_spacing: 10px;
+    --form_login_register_width: 100%;
+    --form_login_register_input_height: 2.5rem;
+    /* profile */
     --profile_picture_size: 80px;
+    --profile_picture_left: 10px;
+    --profile_name_left: 10px;
+    --profile_inner_wrapper_gap: 10px;
+    --profile_inner_wrapper_padding: 10px;
+    --profile_inner_wrapper_children_padding: 10px;
+    /* about */
+    --about_binder_spacing: 25px;
+    --about_binder_padding: 20px 10px;
+    --about_card_spacing: 5px;
+    --about_card_padding: 10px 0 15px 0;
 }
 
 
@@ -36,7 +58,8 @@ a           {font-size: 0;                                                      
 p           {font-size: 0.9rem;     color: rgb(120, 125, 133);      font-weight: 600;}
 form h2     {font-size: 2rem;}
 form h3     {font-size: 1rem;}
-form h3 a   {font-size: 1rem;       color: rgba(255, 255, 255, 1);font-weight: 400;     text-decoration: none;}
+form h3 a   {font-size: 1rem;       color: rgba(255, 255, 255, 1);  font-weight: 400;     text-decoration: none;}
+label       {font-size: 1rem;       color: rgba(255, 255, 255, 1);font-weight: 400;}
 
 /* Bakgrunds färg */
 body                                {background-color: rgb(14, 18, 30);}
@@ -63,11 +86,14 @@ input                               {border: none;}
 
 /* Border radius */
 #burger div                         {border-radius: calc(var(--burger_line_width) / 2);}
+#nav-links                          {border-radius: 0 0 5px 0;}
 .game                               {border-radius: 15px;}
 .game img                           {border-radius: 15px;}
-#account-grid-wrapper > *           {border-radius: 0px;}
+#account-inner-wrapper > *          {border-radius: 10px;}
+#account-pfp                        {border-radius: 10px;}
 button                              {border-radius: 8px;}
 input                               {border-radius: 8px;}
+.about-card                         {border-radius: 10px;}
 
 
 
@@ -75,30 +101,19 @@ input                               {border-radius: 8px;}
 button{
     font-size: 1rem;
     padding: 10px;
-}
-button:hover {
     cursor: pointer;
-    opacity: 0.8;
 }
 form{
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    max-width: 100%;
-    width: 400px;
-
-    gap: 8px;
-}
-form hr {
-    margin: 5px 0;
 }
 form > *{
     width: 100%;
     text-align: center;
 }
 input{
-    height: 2rem;
+    height: var(--form_login_register_input_height);
 
     text-align: center;
     outline: 0;
@@ -138,34 +153,24 @@ h1{
     left: 50%;
     transform: translateX(-50%);
 }
+h1 > a > img{
+    height: var(--logo_height);
+}
 header > a > img{
     height: var(--header_icon_height);
 }
 
-#section-search{
-    display: flex;
-    flex-direction: row ;
-}
-#form-search{
-    position: relative;
 
-    display: flex;
-    align-items: center;
 
-    width: 300px;
-    height: 1rem;
-}
-#form-search input{
+/* FOOTER */
+footer{
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--footer_spacing);
+
     width: 100%;
-    height: 100%;
-}
-#form-search img{
-    position: absolute;
-    right: 0;
-    cursor: pointer;
-    
-    max-height: 100%;
-    width: auto;
+    height: var(--footer_height);
 }
 
 
@@ -186,11 +191,15 @@ nav{
 }
 #nav-links{
     position: fixed;
+    left: 0;
     top: var(--header_height);
 
     display: flex;
     flex-direction: column;
     gap: var(--nav_spacing);
+    padding: var(--nav_padding);
+
+    min-width: var(--nav_min_width);
 
     overflow: hidden;
 
@@ -201,16 +210,6 @@ nav{
 .burger-toggle > div:nth-child(2) {transform: rotate(45deg);}
 .burger-toggle > div:nth-child(3) {transform: translateY(calc(-1*var(--burger_line_spacing) - var(--burger_line_width))) rotate(45deg);}
 .nav-active{transform: scaleY(1);}
-
-
-
-/* FOOTER */
-footer{
-    display: flex;
-    flex-direction: column;
-
-    width: 100%;
-}
 
 
 
@@ -234,14 +233,15 @@ iframe{
     align-items: center;
 
     gap: var(--game_spacing);
-    margin: var(--game_spacing) 0;
+    padding: var(--binder_padding);
+}
+#binder * {
+    width: 100%;
 }
 .game{
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    width: 100%;
 }
 .game > *:not(:last-child){
     margin-bottom: 5px;
@@ -257,16 +257,10 @@ iframe{
 
 /* LOGIN/REGISTER */
 .form-login-register {
-    margin: 50px 0;
-}
-.form-login-register > button{
-    height: 2.5rem;
+    padding: var(--form_login_register_padding);
+    gap: var(--form_login_register_spacing);
 
-    margin-top: 5px;
-    padding: 5px;
-
-    border-radius: 100px;
-    font-size: 1rem;
+    width: var(--form_login_register_width);
 }
 .password-container{
     position: relative;
@@ -279,7 +273,8 @@ iframe{
 }
 .eye{
     position: absolute;
-    right: 0.5rem;
+    right: 0;
+    transform: translateX(-75%);
     cursor: pointer;
     
     max-height: 100%;
@@ -305,6 +300,9 @@ iframe{
     width: 100%;
 }
 #account-overview-info{
+    position: relative;
+    left: var(--profile_picture_left);
+
     display: grid;
     grid-template-columns: var(--profile_picture_size) 1fr;
     grid-template-rows: calc(var(--profile_picture_size) * 5.5 / 15) calc(var(--profile_picture_size) * 5 / 15) calc(var(--profile_picture_size) * 4.5 / 15);
@@ -319,12 +317,20 @@ iframe{
 #account-name{grid-area: na;}
 #account-things{grid-area: in;}
 #account-overview-info > *{width: 100%;}
+#account-overview-info > *:not(:first-child){padding-left: var(--profile_name_left);}
 
 #account-inner-wrapper{
     display: flex;
     flex-direction: column;
 
+    gap: var(--profile_inner_wrapper_gap);
+
     width: 100%;
+    padding: var(--profile_inner_wrapper_padding);
+}
+#account-inner-wrapper > *{
+    padding: var(--profile_inner_wrapper_children_padding);
+    height: 300px;
 }
 
 
@@ -333,17 +339,18 @@ iframe{
     display: flex;
     flex-direction: column;
 
-    width: 30rem;
-    gap: 100px;
+    width: 100%;
+    gap: var(--about_binder_spacing);
+
+    padding: var(--about_binder_padding);
 }
 .about-card{
     display: flex;
     flex-direction: column;
 
-    width: 100%;
-    gap: 0.5rem;
+    gap: var(--about_card_spacing);
 
-    padding: 10px;
+    padding: var(--about_card_padding);
 
     text-align: center;
 }

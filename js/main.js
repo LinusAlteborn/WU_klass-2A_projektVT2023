@@ -1,7 +1,7 @@
 /*
 Hitta ett sätt att göra koden finare. byter man sort-by ska den ladda om thumbnailsen. 
 */
-// Data för alla mina spel
+// Data för alla mina spel // WARNING, den är massiv
 var games = [
     {
         "name": "8 Ball Pool (Update) New difficulty",
@@ -522,6 +522,7 @@ function load_site(name){
     if (sessionStorage.getItem('loggedin') == "true"){
         document.getElementById("nav-links-login").children[0].src = "img/profile/pfp.avif";
         document.getElementById("nav-links-login").href = "account.html";
+        document.getElementById("nav-links-login").id = "bruh";
     }
 }
 
