@@ -1,6 +1,3 @@
-/*
-Hitta ett sätt att göra koden finare. byter man sort-by ska den ladda om thumbnailsen. 
-*/
 // Data för alla mina spel // WARNING, den är massiv
 var games = [
     {
@@ -437,6 +434,17 @@ var games = [
     }
 ]
 
+var games_sorted_id = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+]
+
 function time_since(date) {
     const seconds = Math.floor((new Date() - new Date(date)) / 1000);
     const intervals = [
@@ -458,15 +466,6 @@ function time_since(date) {
     }
     
     return 'just now';
-}  
-
-function sort(by){
-    if (by == "oldest"){
-        games.sort(function(a, b) { return a.date - b.date; });
-    }
-    if (by == "latest"){
-        games.sort(function(a, b) { return b.date - a.date; });
-    }
 }
 
 // Mina html templates som jag placerar i html sidor (jag använder semikolon för att kunna gömma dem templates jag inte använder)
@@ -492,7 +491,7 @@ var templates ={
     )
 }
 
-// Funktioner som jag kommer använda senare
+// Funktioner som byter innehåll på header of footer element på sidan
 function load_header_and_footer(){
     document.getElementsByTagName("header")[0].innerHTML = templates.header;
     document.getElementsByTagName("footer")[0].innerHTML = templates.footer;
@@ -501,10 +500,11 @@ function load_header_and_footer(){
 
 // Här är alla funktioner som ändrar sidan när den startar (ändrar spel texter, ändrar användarnamns texter osv)
 function load_site(name){
+    // header and footer ska laddas in på alla sidor
+    load_header_and_footer()
+
     if (name === "index"){
         load_more_games(4);
-        sort("latest"); // sorterar nyast spelen först. Vet inte hur den fungerar... men den fungerar perfekt!
-        document.getElementById("sort-by").addEventListener("change", sort_by);
     }
     if (name === "game"){
         document.getElementById("game").src = "games/" + game_id + "/index.html";
@@ -539,6 +539,7 @@ function sort_by(event){
 }
 
 function add_game(game_id){
+    // skapa spel objekt
     const game = games[game_id]
     var elapsed = time_since(game.shared);
     var new_game = Object.assign(document.createElement('a'), {href:`game.html?${game_id}`, classList:"game"});
@@ -546,8 +547,8 @@ function add_game(game_id){
     new_game.appendChild(Object.assign(document.createElement('h2'), {innerHTML:game.name}));
     new_game.appendChild(Object.assign(document.createElement('p'), {innerHTML:elapsed}));
 
+    // lägg till spel objektet i binder
     document.getElementById("binder").appendChild(new_game);
-    sort("latest");
 }
 
 function load_more_games(amount){
@@ -596,12 +597,11 @@ function showPassword() {
     }
 }
 
-
 const usernameField = document.getElementById("username-field")
 const passwordField = document.getElementById("password-field")
 const eye = document.getElementsByClassName("eye")[0]
 const form = document.getElementsByTagName("form")[0]
 const site_name = window.location.pathname.split("/").pop().split(".")[0]
 const game_id = location.search.substring(1)
-load_header_and_footer()
+// laddar in alla element som genereras genom javascript
 load_site(site_name)
