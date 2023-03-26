@@ -504,12 +504,12 @@ function load_site(name){
     load_header_and_footer()
 
     if (name === "index"){
-        load_more_games(4);
+        load_more_games(8);
     }
     if (name === "game"){
         document.getElementById("game").src = "games/" + game_id + "/index.html";
         document.getElementById("game_info_name").innerHTML = games[game_id].name;
-        document.getElementById("game_info_engine").innerHTML = "Made in " + games[game_id].engine;
+        document.getElementById("game_info_engine").innerHTML = "Made in Scratch " + time_since(games[game_id].shared);
     }
     if (name === "login" || name === "register"){
         form.addEventListener('submit', handleForm);
