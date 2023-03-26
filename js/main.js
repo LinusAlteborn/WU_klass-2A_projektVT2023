@@ -492,7 +492,7 @@ function load_site(name){
     // header and footer ska laddas in på alla sidor
     load_header_and_footer()
 
-    if (name === "index"){
+    if (name === "" || name == "index"){
         load_more_games(8);
     }
     if (name === "game"){
@@ -593,4 +593,4 @@ const form = document.getElementsByTagName("form")[0]
 const site_name = window.location.pathname.split("/").pop().split(".")[0]
 const game_id = location.search.substring(1)
 // laddar in alla element som genereras genom javascript
-load_site(site_name)
+window.onload = function (){load_site(site_name)}
