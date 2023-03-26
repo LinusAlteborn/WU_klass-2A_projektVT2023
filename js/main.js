@@ -434,17 +434,6 @@ var games = [
     }
 ]
 
-var games_sorted_id = [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-]
-
 function time_since(date) {
     const seconds = Math.floor((new Date() - new Date(date)) / 1000);
     const intervals = [
@@ -520,7 +509,7 @@ function load_site(name){
     }
     // visar din profil bild och byter länk till account sidan om du är inloggad
     if (sessionStorage.getItem('loggedin') == "true"){
-        document.getElementById("nav-links-login").children[0].src = "img/profile/pfp.avif";
+        document.getElementById("nav-links-login").children[0].src = "img/profile/pfp.png";
         document.getElementById("nav-links-login").href = "account.html";
         document.getElementById("nav-links-login").id = "bruh";
     }

@@ -216,8 +216,7 @@ footer{
     height: var(--footer_height);
 }
 footer > p{
-    position: relative;
-    left: var(--footer_text_left);
+    margin-left: var(--footer_text_left);
 }
 
 
