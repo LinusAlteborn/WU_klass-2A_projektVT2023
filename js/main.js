@@ -492,7 +492,7 @@ function load_site(name){
     // header and footer ska laddas in på alla sidor
     load_header_and_footer()
 
-    if (name === "" || name == "index"){
+    if (name == "" || name == "index"){
         load_more_games(8);
     }
     if (name === "game"){
