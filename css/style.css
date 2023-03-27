@@ -40,6 +40,7 @@
     --profile_inner_wrapper_padding: 10px;
     --profile_inner_wrapper_children_padding: 10px;
     /* about */
+    --about_card_width: 20rem;
     --about_binder_spacing: 100px;
     --about_binder_padding: 20px 10px;
     --about_card_spacing: 5px;
@@ -243,8 +244,10 @@ iframe{
     flex-direction: column;
     align-items: center;
 
+    width: 100%;
+
     gap: var(--game_spacing);
-    margin: var(--binder_padding);
+    padding: var(--binder_padding);
 }
 .game{
     display: flex;
@@ -263,6 +266,7 @@ iframe{
 }
 #load-more{
     width: 100%;
+    margin: var(--binder_padding);
 }
 
 
@@ -350,6 +354,7 @@ iframe{
 #about-binder{
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     width: 100%;
     gap: var(--about_binder_spacing);
@@ -362,6 +367,8 @@ iframe{
 
     gap: var(--about_card_spacing);
 
+    width: var(--about_card_width);
+
     padding: var(--about_card_padding);
 
     text-align: center;
@@ -369,7 +376,7 @@ iframe{
 
 @media only screen and (min-width: 700px){
     :root{
-        --nav_spacing: 10px;
+        --nav_spacing: 20px;
         --nav_padding: 0;
 
         --profile_picture_size: 120px;
@@ -407,9 +414,14 @@ iframe{
         justify-content: center;
 
         max-width: var(--binder_width);
+        margin: var(--binder_padding);
+        padding: 0;
     }
     .game{
         width: var(--game_width);
+    }
+    #load-more{
+        max-width: var(--binder_width);
     }
 
 
