@@ -529,7 +529,7 @@ function burger_menu(){
     document.getElementById('nav-links').classList.toggle('nav-active');
 }
 
-function add_game(game_id){
+function add_game(){
     // lägg till spel objektet i binder
     document.getElementById("binder").innerHTML += templates["game-link"];
 }
@@ -548,12 +548,11 @@ function render_games() {
 }
 
 function load_more_games(amount){
-    var start = document.getElementById("binder").childElementCount;
-    for(var i = start; i < start + amount; i++){
-        add_game(i);
-        if (i >= games.length - 1){
+    for(var i = 0; i < amount; i++){
+        add_game();
+        if (document.getElementById("binder").childElementCount >= games.length){
             document.getElementById("load-more").remove();
-            return
+            break
         }
     }
     render_games();
