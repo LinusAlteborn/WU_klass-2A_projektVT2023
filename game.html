@@ -5,25 +5,136 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Binus Spelus</title>
+    <title>Linus Spel</title>
 </head>
 <body>
     <div id="flex-wrapper">
         <header></header> <!-- koden för header finns i javascript filen -->
-        
-        <!-- detta element är användbart for att sätta in en hel html fil i en annan -->
-        <iframe id="game">
-            Your browser does not support iframes. Which means you can't play on this site. sorry ):
-        </iframe>
 
-        <section id="game_info">
-            <h2 id="game_info_name">
-                [insert game name]
-            </h2>
-            <h4 id="game_info_engine">
-                Made in [insert game engine] [insert time] ago
-            </h4>
-        </section>
+        <div id="game-wrapper">
+            <section id="game-header">
+                <h2 id="game_info_name">
+                    [insert game name]
+                </h2>
+                <button id="reset-button">↺</button>
+                <button id="fullscreen-button">⛶</button>
+            </section>
+            <!-- detta element är användbart for att sätta in en hel html fil i en annan -->
+            <iframe id="game"></iframe>
+            
+            <section id="game_info">
+                <h4 id="game_info_engine">
+                    Made in [insert game engine] [insert time] ago
+                </h4>
+                <div id="game_info_instructions_wrapper" class="text-wrapper">
+                    <h3 id="game_info_instructions_header">
+                        Instructions
+                    </h3>
+                    <p id="game_info_instructions">
+                        Hello and welcome to my new and "improved" version of 8 ball pool.
+                
+                New update! Yay.
+                ___________________________________________
+                
+                Instructions:
+                Click and drag to pull the cue. Release to shoot.
+                
+                (Pull towards the cue)
+                ___________________________________________
+                
+                8 Ball Pool rules:
+                To win, a player must sink the 8 ball (the black ball). But first, you must sink all the red or blue balls depending on which color you got at the beginning.
+                
+                The color is decided by the first ball you sink, so if you sink a red ball first, your color is red, and if you sink a blue ball first, your color is blue.
+                
+                If the opposing player plays an illegal shot, you get the cue ball(white ball) in your hand. Click to place the ball anywhere you want.
+                
+                These are the illegal moves:
+                *You sink the opponent's ball
+                *You don't hit the right ball color first
+                *You don't hit anything
+                *You sink the cue ball
+                
+                These are the losing moves:
+                *You sink the cue ball and 8 ball in the same shot
+                *You sink the 8 ball before the others
+                ___________________________________________
+                
+                Info about the physics engine:
+                
+                Warning! This explanation is very bad and probably false. So please take everything with a grain of salt.
+                
+                I don't know what I'm doing, My brain is smooth, and I can't explain stuff very well.
+                
+                
+                
+                ...
+                
+                
+                
+                Anyway.
+                
+                Most physics engines use something called real-time physics. This means that the engine checks for collision on every frame and tries to push colliding objects out of each other.
+                
+                So, for example, an 8-ball pool engine using real-time physics would check for distances between the balls on every frame, and if the distance is smaller than 2r, they are colliding. (this is the method I used for my old 8-ball pool game)
+                
+                This method works fine for most applications. But it's not very accurate. If the speeds are too large or the frames are too low, then the physics just dies.
+                
+                
+                
+                The physics engine used in this game has a different approach. The collisions are not calculated on each frame. Instead, they are calculated before you even see the balls moving.
+                
+                I do this by using something called "the quartic formula." The result is that I have a function that can give me the time when 2 balls will collide in an instant.
+                
+                So instead of checking for collisions on every frame, I just calculate when they will collide with a function.
+                
+                This method can handle high speed with no issues and is super accurate.
+                
+                I also take advantage of this to make the bot better. The bot simulates many shots to find the best one. That's why it can take a while for it to think.
+                
+                This is a very brief explanation. I might make a video going into more detail about it.
+                    </p>
+                </div>
+                <div id="game_info_description_wrapper" class="text-wrapper">
+                    <h3 id="game_info_description_header">
+                        Description
+                    </h3>
+                    <p id="game_info_description">
+                        Use Turbowarp to avoid lag and long waiting times:
+    https://turbowarp.org/353994505
+    ___________________________________________
+    
+    Note:
+    *The bot is quite slow, but don't make fun of him, he's self-conscious. ok?
+    *The shooting is delayed by about 1 second for performance reasons. sorry about that... /=
+    
+    Let me know if you find any glitches.
+    ___________________________________________
+    
+    Devlog:
+    2022-08-29 Share
+    2022-08-29 Bot optimization and progress bar
+    2022-08-30 made the bot think less on easy/medium.
+    2022-08-31 optimized the bot code
+    2022-08-31 added a new difficulty, (Impossible.)
+    ___________________________________________
+    
+    Credit to Ferrari Ludovico and Newton for some math stuff.
+    
+    Credit to Miniclip for the thumbnail
+    
+    And credit to you for playing. (=
+    ___________________________________________
+    
+    I didn't steal the physics engine from a tutorial this time. So congrats to me, right?
+    
+    Anyway
+    Have a good day,
+    bye
+                    </p>
+                </div>
+            </section>
+        </div>
 
         <footer></footer> <!-- koden för footer finns i javascript filen -->
     </div>

@@ -41,7 +41,7 @@
     --profile_inner_wrapper_children_padding: 10px;
     /* about */
     --about_card_width: 20rem;
-    --about_binder_spacing: 100px;
+    --about_binder_spacing: 50px;
     --about_binder_padding: 20px 10px;
     --about_card_spacing: 5px;
     --about_card_padding: 10px 0 15px 0;
@@ -65,14 +65,18 @@ label       {font-size: 1rem;       color: rgba(255, 255, 255, 1);font-weight: 4
 
 /* Bakgrunds färg */
 body                                {background-color: rgb(14, 18, 30);}
+footer                                {background-color: rgb(14, 18, 30);}
 header                              {background-color: rgb(19, 30, 48);}
 #burger div                         {background-color: white;}
 nav                                 {background-color: rgb(19, 30, 48);}
-.game                               {background-color: rgba(255, 255, 255, 0);}
+.game                               {background-color: rgb(9, 15, 26);}
 button                              {background-color: #1d2f4b;}
 iframe                              {background-color: black;}
 #account-inner-wrapper > *          {background-color: rgb(28, 33, 47);}
 input                               {background-color: rgb(27, 33, 49);}
+.about-card                         {background-color: #131f34;}
+.text-wrapper                       {background-color: #131f34;}
+form                                {background-color: #101825;}
 
 /* Färg */
 button                              {color: white;}
@@ -80,11 +84,13 @@ input                               {color: white;}
 input::placeholder                  {color: rgba(174, 193, 249, 0.396);}
 
 /* Border styling */
-.game                               {border: 0}
+.game                               {border: 1px solid rgba(255, 255, 255, 0.092)}
 iframe                              {border: none}
 hr                                  {border: 1px solid rgb(36, 39, 43);}
 button                              {border: none;}
 input                               {border: none;}
+.about-card                         {border: #ffffff1d 2px solid;}
+form                                {border: 2px rgba(255, 255, 255, 0.052) solid;}
 
 /* Border radius */
 #burger div                         {border-radius: calc(var(--burger_line_width) / 2);}
@@ -96,6 +102,7 @@ input                               {border: none;}
 button                              {border-radius: 8px;}
 input                               {border-radius: 8px;}
 .about-card                         {border-radius: 10px;}
+form                                {border-radius: 10px;}
 
 
 
@@ -134,6 +141,9 @@ input{
     width: 100%;
 
     padding-top: var(--header_height);
+    background: url(../img/misc/bakgrund.png);
+
+    background-size: 400%;
 }
 
 
@@ -235,6 +245,48 @@ iframe{
 
     padding: 10px;
 }
+#game-wrapper{
+    width: 100%;
+}
+#game-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 5px 5px 10px;
+}
+#game-header > button {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    padding: 0;
+    font-size: 20px;
+}
+#game_info_name{
+    flex-grow: 1;
+    font-size: 1rem;
+}
+#game_info{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 15px;
+
+    width: 100%;
+
+    padding: 10px;
+}
+#game_info_engine {grid-area: ti;overflow: hidden;}
+#game_info_description_wrapper {grid-area: de;}
+#game_info_instruction_wrapper {grid-area: in;}
+.text-wrapper {
+    border:rgba(255, 255, 255, 0.25) 2px solid;
+    opacity: 1;
+    border-radius: 5px;
+    padding:10px 20px 10px 10px;
+    overflow-y: scroll;
+}
+.text-wrapper > p {white-space: pre-line;height: 30vh;font-size: 1rem;}
 
 
 
@@ -254,6 +306,7 @@ iframe{
     flex-direction: column;
     align-items: center; 
     width: 100%;
+    padding-bottom: 10px;
 }
 .game > *:not(:last-child){
     margin-bottom: 5px;
@@ -390,6 +443,11 @@ iframe{
     }
 
 
+    #flex-wrapper{
+        background-size: 115%;
+    }
+
+
     /* HEADER */
     #nav-links{
         flex-direction: row;
@@ -426,16 +484,58 @@ iframe{
 
 
     /* GAME.html */
-    iframe{
-        width: auto;
-        height: 80vh;
+    #game-wrapper{
+        width: calc(80vh * 16 / 9);
     }
+    #game-header {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px;
+    }
+    #game-header > button {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        padding: 0;
+        font-size: 20px;
+    }
+    #game_info_name{
+        flex-grow: 1;
+        font-size: 1.25rem;
+    }
+    #game_info{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 0 1fr;
+        grid-template-areas:
+        "ti ti"
+        "in de";
 
+        gap: 15px;
 
+        width: 100%;
+
+        padding: 10px;
+    }
+    #game_info > h4{ color: rgb(207, 207, 207);}
+    #game_info_engine {grid-area: ti;overflow: hidden;}
+    #game_info_description_wrapper {grid-area: de;}
+    #game_info_instruction_wrapper {grid-area: in;}
+    .text-wrapper {
+        border:white 2px solid;
+        opacity: 1;
+        color: white;
+        border-radius: 5px;
+        padding:10px 20px 10px 10px;
+        overflow-y: scroll;
+    }
+    .text-wrapper > p {white-space: pre-line;height: 50vh;font-size: 1rem;}
 
     /* login */
     .form-login-register {
         width: 400px;
+        margin: 50px 0;
     }
     .form-login-register > button {
         height: var(--form_login_register_input_height);

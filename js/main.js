@@ -470,7 +470,7 @@ var templates ={
     '   <div></div>' +
     '   <div></div>' +
     '</div>' +
-    '<h1><a href="index.html">Binus Spelus</a></h1>' +
+    '<h1><a href="index.html">Linus Spel</a></h1>' +
     '<a href="login.html" id="nav-links-login"><img src="img/icons/account.svg" alt="login"></a>'
     ),
 
@@ -515,6 +515,7 @@ function load_site(name){
     }
     if (name === "account"){
         document.getElementById("account-name").innerHTML = sessionStorage.getItem('username');
+        document.getElementById("logout-button").addEventListener('click', logout);
     }
     // visar din profil bild och byter länk till account sidan om du är inloggad
     if (sessionStorage.getItem('loggedin') == "true"){
