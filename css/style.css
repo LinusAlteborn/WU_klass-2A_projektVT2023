@@ -96,7 +96,7 @@ form                                {border: 2px rgba(255, 255, 255, 0.052) soli
 #burger div                         {border-radius: calc(var(--burger_line_width) / 2);}
 #nav-links                          {border-radius: 0 0 5px 0;}
 .game                               {border-radius: 15px;}
-.game img                           {border-radius: 15px;}
+.game img                           {border-radius: 10px;}
 #account-inner-wrapper > *          {border-radius: 10px;}
 #account-pfp                        {border-radius: 10px;}
 button                              {border-radius: 8px;}
@@ -255,11 +255,11 @@ iframe{
     padding: 5px 5px 5px 10px;
 }
 #game-header > button {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border-radius: 5px;
     padding: 0;
-    font-size: 20px;
+    font-size: 15px;
 }
 #game_info_name{
     flex-grow: 1;
@@ -306,7 +306,7 @@ iframe{
     flex-direction: column;
     align-items: center; 
     width: 100%;
-    padding-bottom: 10px;
+    padding: 5px 5px 8px 5px;
 }
 .game > *:not(:last-child){
     margin-bottom: 5px;
@@ -412,19 +412,38 @@ iframe{
     width: 100%;
     gap: var(--about_binder_spacing);
 
-    padding: var(--about_binder_padding);
+    padding: var(--about_binder_spacing) 0;
 }
 .about-card{
     display: flex;
     flex-direction: column;
 
-    gap: var(--about_card_spacing);
+    gap: 20px;
 
-    width: var(--about_card_width);
+    padding: 10px 0 0 0;
 
-    padding: var(--about_card_padding);
-
+    width: 100%;
+    
     text-align: center;
+    border: 0;
+    border-radius: 0;
+}
+.about-text-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    width: var(--about_card_width);
+    align-self: center;
+    gap: var(--about_card_spacing);
+}
+.about-image{
+    
+}
+.about-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
 }
 
 @media only screen and (min-width: 700px){
@@ -498,7 +517,7 @@ iframe{
         height: 40px;
         border-radius: 5px;
         padding: 0;
-        font-size: 20px;
+        font-size: 18px;
     }
     #game_info_name{
         flex-grow: 1;
@@ -540,6 +559,41 @@ iframe{
     .form-login-register > button {
         height: var(--form_login_register_input_height);
         padding: 0;
+    }
+
+
+
+    /* ABOUT */
+    .about-card{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    
+        padding: 20px;
+    
+        width: 100%;
+        
+        text-align: center;
+        border: 0;
+        border-radius: 0;
+    }
+    .about-text-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        width: var(--about_card_width);
+        align-self: center;
+        gap: var(--about_card_spacing);
+    }
+    .about-image{
+        
+    }
+    .about-image img {
+        border-radius: 20px;
+        width: 500px;
+        height: 350px;
+        object-fit: cover;
     }
     
 
