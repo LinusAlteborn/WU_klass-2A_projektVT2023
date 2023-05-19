@@ -50,7 +50,7 @@
 
 /* Text styling */
 h1          {font-size: 0;}
-h1 a        {font-size: 1.5rem;       color: rgb(255, 255, 255);      font-weight: 800;}
+h1 a        {font-size: 1.5rem;     color: rgb(255, 255, 255);      font-weight: 800;}
 h1 a img    {height: 2.5rem;}
 h2          {font-size: 1rem;       color: white;}
 h2 a        {font-size: 1rem;       color: rgb(255, 255, 255);      font-weight: 500;}
@@ -65,7 +65,7 @@ label       {font-size: 1rem;       color: rgba(255, 255, 255, 1);font-weight: 4
 
 /* Bakgrunds färg */
 body                                {background-color: rgb(14, 18, 30);}
-footer                                {background-color: rgb(14, 18, 30);}
+footer                              {background-color: rgb(14, 18, 30);}
 header                              {background-color: rgb(19, 30, 48);}
 #burger div                         {background-color: white;}
 nav                                 {background-color: rgb(19, 30, 48);}
